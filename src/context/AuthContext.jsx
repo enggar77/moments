@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 				try {
 					// Create user in Convex database
 					await createUser({
-						clerkId: user.id,
+						userId: user.id,
 						email: user.primaryEmailAddress?.emailAddress,
 						name: user.fullName,
 					});
