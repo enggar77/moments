@@ -10,15 +10,12 @@ import Button from './Button';
 import { Link, useLocation } from 'react-router';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
+import Loading from './Loading';
 
 export default function Navbar() {
 	const { pathname } = useLocation();
-	const { user } = useUser();
+	const { user, isLoaded } = useUser();
 	const { openSignIn } = useClerk();
-
-	const userRole = useQuery(api.users.getUserById, {
-		clerkId: user?.id || '',
-	}) ?? { role: 'user' };
 
 	if (!user) {
 		return (
@@ -32,6 +29,16 @@ export default function Navbar() {
 			</div>
 		);
 	}
+	if (!isLoaded) return <Loading />;
+
+	// eslint-disable-next-line react-hooks/rules-of-hooks
+	const userRole = useQuery(
+		api.users.getUserById,
+		user?.id ? { clerkId: user.id } : undefined // Conditional argument with undefined
+	);
+
+	if (userRole === undefined) return <Loading />;
+	if (!userRole) return <Loading />;
 
 	return (
 		<div className="px-10 flex justify-between items-center h-14">
@@ -58,10 +65,10 @@ export default function Navbar() {
 					)}
 					{/* Regular User */}
 					{userRole.role === 'user' && (
-						<Link to={`ticket/${user.id}`}>
+						<Link to={`ticket/${userRole._id}`}>
 							<span
 								className={
-									pathname === `/ticket/${user.id}`
+									pathname === `/ticket/${userRole._id}`
 										? 'text-base-content/50 underline'
 										: ''
 								}

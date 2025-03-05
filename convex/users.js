@@ -9,24 +9,23 @@ export const createUser = mutation({
 		name: v.string(),
 	},
 	handler: async (ctx, args) => {
+		const isOrganizer = ORGANIZER_EMAILS.includes(args.email);
+		const isAdmin = ADMIN_EMAILS.includes(args.email);
+
 		const existingUser = await ctx.db
 			.query('users')
 			.filter((q) => q.eq(q.field('clerkId'), args.clerkId))
 			.first();
 
 		if (existingUser) {
-			return existingUser._id;
+			return existingUser.clerkId;
 		}
 
 		return await ctx.db.insert('users', {
 			clerkId: args.clerkId,
 			email: args.email,
 			name: args.name,
-			role: ORGANIZER_EMAILS.includes(args.email)
-				? 'organizer'
-				: ADMIN_EMAILS.includes(args.email)
-					? 'admin'
-					: 'user',
+			role: isOrganizer ? 'organizer' : isAdmin ? 'admin' : 'user',
 		});
 	},
 });
