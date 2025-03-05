@@ -13,6 +13,8 @@ export const AuthProvider = ({ children }) => {
 
 	useEffect(() => {
 		const syncUser = async () => {
+			if (!user || !user.id) return;
+
 			if (user) {
 				try {
 					// Create user in Convex database

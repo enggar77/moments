@@ -38,9 +38,10 @@ export const getAllUsers = query({
 
 export const getUserById = query({
 	args: {
-		clerkId: v.string(),
+		clerkId: v.optional(v.string()),
 	},
 	handler: async (ctx, args) => {
+		if (!args.clerkId) return null;
 		return await ctx.db
 			.query('users')
 			.filter((q) => q.eq(q.field('clerkId'), args.clerkId))
