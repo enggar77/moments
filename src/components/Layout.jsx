@@ -1,0 +1,17 @@
+import { Outlet } from 'react-router';
+import Navbar from './Navbar';
+import Footer from './Footer';
+
+export default function Layout() {
+	return (
+		<div className="bg-base-100 text-base-content relative">
+			<div className="min-h-screen flex flex-col max-w-7xl mx-auto">
+				<Navbar />
+				<main className="grow">
+					<Outlet />
+				</main>
+				<Footer />
+			</div>
+		</div>
+	);
+}
