@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Error from './components/Error';
 import MyTickets from './pages/MyTickets';
 import AddEvent from './pages/AddEvent';
+import EditEvent from './pages/EditEvent';
 
 const router = createBrowserRouter([
 	{
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
 			{
 				path: '/sell',
 				element: <AddEvent />,
+			},
+			{
+				path: '/seller/events/:eventId/edit',
+				element: <EditEvent />
 			},
 			{
 				path: '/event/:eventId',

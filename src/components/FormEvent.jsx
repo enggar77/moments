@@ -4,7 +4,7 @@ import { uploadImage } from '../libs/uploadImage';
 import { Link, useNavigate, useParams } from 'react-router';
 import Loading from '../components/Loading';
 import { useUser } from '@clerk/clerk-react';
-import { useMutation } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 
 export default function FormEvent() {
@@ -28,36 +28,22 @@ export default function FormEvent() {
 
 	const navigate = useNavigate();
 	const createEvent = useMutation(api.events.create);
+	const eventData = eventId ? useQuery(api.events.getById, { eventId }) : null;
+
+
+	const updateEvent = useMutation(api.events.updateEvent);
 
 	useEffect(() => {
-		if (!eventId) return;
-
-		async function fetchEvent() {
-			try {
-				// Mock Data (Remove this in production)
-				const mockData = {
-					concertName: 'Mock Concert',
-					date: '2025-06-01',
-					price: '50',
-					venue: 'Mock Venue',
-					time: '19:00',
-					status: 'On Sale',
-					description: 'This is a mock event',
-					image: 'mock-image-url.jpg',
-				};
-				// Simulate API delay
-				await new Promise((resolve) => setTimeout(resolve, 500));
-
-				// Set form with mock data
-				setFormData(mockData);
-				setImageUrl(mockData.imageUrl);
-			} catch (error) {
-				console.error('Error fetching event:', error);
-			}
+		if (eventData && Object.keys(eventData).length > 0) {
+			setFormData({
+				...eventData,
+				eventId,
+				eventDate: eventData.eventDate
+					? new Date(eventData.eventDate).toISOString().split('T')[0]
+					: '',
+			});
 		}
-
-		fetchEvent();
-	}, [eventId]);
+	}, [eventData]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -84,10 +70,15 @@ export default function FormEvent() {
 		};
 
 		if (eventId) {
-			console.log('Updating event:', finalFormData);
-			// Mock API update call
+			const { _id, _creationTime, userId, ...restFormData } =
+				finalFormData;
+
+			try {
+				await updateEvent(restFormData);
+			} catch (error) {
+				console.log(error);
+			}
 		} else {
-			console.log('Creating event:', finalFormData);
 			try {
 				await createEvent(finalFormData);
 			} catch (error) {
@@ -217,9 +208,7 @@ export default function FormEvent() {
 					</fieldset>
 
 					<fieldset className="fieldset col-span-1 lg:col-span-2">
-						<legend className="fieldset-legend">
-							Event Image
-						</legend>
+						<legend className="fieldset-legend">Event Image</legend>
 						<input
 							disabled={loading}
 							type="file"
