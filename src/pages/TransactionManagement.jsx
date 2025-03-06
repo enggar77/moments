@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react';
-import Sidebar from '../components/Sidebar';
+import { useState } from 'react';
 
 const transactions = [
 	{
@@ -40,30 +39,14 @@ const statusColors = {
 export default function TransactionManagement() {
 	const [search, setSearch] = useState('');
 	const [statusFilter, setStatusFilter] = useState('All');
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
 	const filteredTransactions = transactions.filter(
 		(t) =>
 			t.customer.toLowerCase().includes(search.toLowerCase()) &&
 			(statusFilter === 'All' || t.status === statusFilter)
 	);
 
-	useEffect(() => {
-		document.body.style.overflow = isSidebarOpen ? 'hidden' : 'auto';
-	}, [isSidebarOpen]);
-
 	return (
 		<div className="flex flex-col md:flex-row">
-			<button
-				className="md:hidden btn btn-primary m-4"
-				onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-			>
-				{isSidebarOpen ? 'Close Menu' : 'Open Menu'}
-			</button>
-			<Sidebar
-				isOpen={isSidebarOpen}
-				onClose={() => setIsSidebarOpen(false)}
-			/>
 			<main className="p-6 flex-1">
 				<h2 className="text-2xl font-bold mb-6">
 					Transactions Management

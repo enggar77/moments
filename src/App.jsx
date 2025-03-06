@@ -8,6 +8,7 @@ import AddEvent from './pages/AddEvent';
 import EditEvent from './pages/EditEvent';
 import EventDetails from './pages/EventDetails';
 import TransactionManagement from './pages/TransactionManagement';
+import Overview from './pages/Overview';
 
 const router = createBrowserRouter([
 	{
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/seller/events/:eventId/edit',
-				element: <EditEvent />
+				element: <EditEvent />,
 			},
 			{
 				path: '/event/:id',
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
 
 				children: [
 					{
+						path: '/dashboard',
+						element: <Overview />,
+					},
+					{
 						path: '/dashboard/events',
 						element: <div>All Events</div>,
 					},
@@ -50,13 +55,9 @@ const router = createBrowserRouter([
 					},
 					{
 						path: '/dashboard/transactions',
-						element: <div>All Transactions</div>,
+						element: <TransactionManagement />,
 					},
 				],
-			},
-			{
-				path: 'dashboard/transactions',
-				element: <TransactionManagement />,
 			},
 		],
 	},

@@ -4,7 +4,6 @@ import { useUser } from '@clerk/clerk-react';
 import { Link, useNavigate, Outlet } from 'react-router';
 import Sidebar from '../components/Sidebar';
 import { useEffect, useState } from 'react';
-import Overview from './Overview';
 
 export default function Dashboard() {
 	const navigate = useNavigate();
@@ -36,7 +35,6 @@ export default function Dashboard() {
 				>
 					☰ Open Menu
 				</button>
-				<Overview />
 				<div>
 					<Outlet />
 				</div>
