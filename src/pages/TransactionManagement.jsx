@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Sidebar from '../components/Sidebar';
 
 const transactions = [
 	{
@@ -48,6 +49,7 @@ export default function TransactionManagement() {
 
 	return (
 		<div className="flex">
+			<Sidebar />
 			<main className="p-6 flex-1">
 				<h2 className="text-2xl font-bold mb-6">
 					Transactions Management

@@ -1,74 +1,75 @@
+import { useState } from 'react';
 import { Link, useLocation } from 'react-router';
-import { LineChart, Menu, Music, Ticket, Users } from 'lucide-react';
+import { LineChart, Music, Ticket, Users, X, Menu } from 'lucide-react';
 
 export default function Sidebar() {
 	const { pathname } = useLocation();
+	const [isOpen, setIsOpen] = useState(false);
+
+	const toggleSidebar = () => setIsOpen(!isOpen);
 
 	return (
-		<div className="drawer lg:drawer-open">
-			<input
-				id="sidebar-toggle"
-				type="checkbox"
-				className="drawer-toggle"
-			/>
-			<div className="drawer-content p-4">
-				<label
-					htmlFor="sidebar-toggle"
-					className="btn btn-primary drawer-button lg:hidden"
-				>
-					<Menu size={24} />
-				</label>
-			</div>
-			<div className="drawer-side">
-				<label
-					htmlFor="sidebar-toggle"
-					className="drawer-overlay"
-				></label>
-				<aside className="menu p-4 w-64 min-h-full bg-base-200 text-base-content">
-					<h2 className="text-lg font-semibold mb-4">
-						Admin Dashboard
-					</h2>
-					<ul>
-						<SidebarLink
-							to="/dashboard"
-							pathname={pathname}
-							Icon={LineChart}
-							text="Overview"
-						/>
-						<SidebarLink
-							to="/dashboard/events"
-							pathname={pathname}
-							Icon={Music}
-							text="Concerts Management"
-						/>
-						<SidebarLink
-							to="/dashboard/transactions"
-							pathname={pathname}
-							Icon={Ticket}
-							text="Transactions"
-						/>
-						<SidebarLink
-							to="/dashboard/users"
-							pathname={pathname}
-							Icon={Users}
-							text="Users"
-						/>
-					</ul>
-				</aside>
-			</div>
-		</div>
-	);
-}
-
-function SidebarLink({ to, pathname, Icon, text }) {
-	return (
-		<li>
-			<Link
-				to={to}
-				className={`${pathname === to ? 'bg-primary text-white' : ''} flex items-center gap-2 p-2 rounded-lg hover:bg-primary hover:text-white`}
+		<>
+			{/* Hamburger Button */}
+			<button
+				className="md:hidden fixed top-4 left-4 p-2 bg-gray-200 rounded shadow-lg z-50"
+				onClick={toggleSidebar}
 			>
-				<Icon /> {text}
-			</Link>
-		</li>
+				<Menu className="w-6 h-6" />
+			</button>
+
+			{/* Overlay */}
+			{isOpen && (
+				<div
+					className="fixed inset-0 md:hidden"
+					onClick={toggleSidebar}
+				></div>
+			)}
+
+			{/* Sidebar */}
+			<div
+				className={`fixed md:relative top-0 left-0 w-64 h-full bg-white shadow-lg p-4 flex flex-col gap-4 transform transition-transform duration-300 ease-in-out ${
+					isOpen ? 'translate-x-0' : '-translate-x-full'
+				} md:translate-x-0 z-50`}
+			>
+				{/* Close Button */}
+				<button
+					className="md:hidden self-end p-2 rounded bg-gray-200 hover:bg-gray-300 transition-colors"
+					onClick={toggleSidebar}
+				>
+					<X className="w-6 h-6" />
+				</button>
+
+				<h2 className="text-lg font-semibold text-gray-700">
+					Admin Dashboard
+				</h2>
+				<nav className="flex flex-col gap-2">
+					<Link
+						to="/dashboard"
+						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard' ? 'bg-gray-200' : ''}`}
+					>
+						<LineChart className="w-5 h-5" /> Overview
+					</Link>
+					<Link
+						to="/dashboard/events"
+						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard/events' ? 'bg-gray-200' : ''}`}
+					>
+						<Music className="w-5 h-5" /> Concerts Management
+					</Link>
+					<Link
+						to="/dashboard/transactions"
+						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard/transactions' ? 'bg-gray-200' : ''}`}
+					>
+						<Ticket className="w-5 h-5" /> Transactions
+					</Link>
+					<Link
+						to="/dashboard/users"
+						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard/users' ? 'bg-gray-200' : ''}`}
+					>
+						<Users className="w-5 h-5" /> Users
+					</Link>
+				</nav>
+			</div>
+		</>
 	);
 }

@@ -40,10 +40,6 @@ const router = createBrowserRouter([
 						path: '/dashboard/users',
 						element: <div>All Users</div>,
 					},
-					// {
-					// 	path: '/dashboard/transactions',
-					// 	element: <TransactionManagement />,
-					// },
 				],
 			},
 			{

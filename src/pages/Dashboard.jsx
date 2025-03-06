@@ -2,7 +2,7 @@ import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import { useUser } from '@clerk/clerk-react';
 import { Link, useNavigate, Outlet } from 'react-router';
-// import Sidebar from '../components/Sidebar';
+import Sidebar from '../components/Sidebar';
 import { useState } from 'react';
 import Overview from './Overview';
 
@@ -20,14 +20,16 @@ export default function Dashboard() {
 	// if (userRole.role !== 'admin') navigate('/');
 
 	return (
-		<div className="flex-1/2">
-			{/* <Sidebar
+		<div className="flex h-screen">
+			<Sidebar
 				isOpen={isSidebarOpen}
 				onClose={() => setIsSidebarOpen(false)}
-			/> */}
-			<Overview />
-			<div>
-				<Outlet />
+			/>
+			<div className="flex-1 p-4">
+				<Overview />
+				<div>
+					<Outlet />
+				</div>
 			</div>
 		</div>
 	);
