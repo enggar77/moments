@@ -7,6 +7,7 @@ import MyTickets from './pages/MyTickets';
 import AddEvent from './pages/AddEvent';
 import EditEvent from './pages/EditEvent';
 import EventDetails from './pages/EventDetails';
+import TransactionManagement from './pages/TransactionManagement';
 
 const router = createBrowserRouter([
 	{
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
 						element: <div>All Transactions</div>,
 					},
 				],
+			},
+			{
+				path: 'dashboard/transactions',
+				element: <TransactionManagement />,
 			},
 		],
 	},
