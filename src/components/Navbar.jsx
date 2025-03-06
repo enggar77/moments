@@ -31,16 +31,16 @@ export default function Navbar() {
 				</Link>
 
 				<div className="flex items-center gap-10">
-					<div className="hidden lg:block">
+					{/* <div className="hidden lg:block">
 						<SearchBar />
-					</div>
+					</div> */}
 					{children}
 				</div>
 			</div>
 
-			<div className="lg:hidden">
+			{/* <div className="lg:hidden">
 				<SearchBar />
-			</div>
+			</div> */}
 		</div>
 	);
 
