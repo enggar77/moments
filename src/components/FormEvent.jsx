@@ -28,20 +28,22 @@ export default function FormEvent() {
 
 	const navigate = useNavigate();
 	const createEvent = useMutation(api.events.create);
-	const eventData = eventId ? useQuery(api.events.getById, { eventId }) : null;
-
+	const eventData = eventId
+		? useQuery(api.events.getById, { eventId })
+		: null;
 
 	const updateEvent = useMutation(api.events.updateEvent);
 
 	useEffect(() => {
 		if (eventData && Object.keys(eventData).length > 0) {
-			setFormData({
+			setFormData((prev) => ({
+				...prev,
 				...eventData,
 				eventId,
 				eventDate: eventData.eventDate
 					? new Date(eventData.eventDate).toISOString().split('T')[0]
 					: '',
-			});
+			}));
 		}
 	}, [eventData]);
 
