@@ -5,8 +5,8 @@
 		"price": 499.99,
 		"totalTickets": 100,
 		"location": "MetLife Stadium, New Jersey",
-		"eventDate": 1723845600000,
-		"userId": "user_2bFMHkGxZPWVVyJ5QEJQxfsCkxB"
+		"eventDate": 1710460800000,
+		"userId": "user_2tuRlzCPhhh5RF0c246YCSWO8gU"
 	},
 	{
 		"name": "NBA Finals 2024 - Game 1",
@@ -14,8 +14,8 @@
 		"price": 899.99,
 		"totalTickets": 50,
 		"location": "Madison Square Garden, New York",
-		"eventDate": 1717891200000,
-		"userId": "user_2bFMHkGxZPWVVyJ5QEJQxfsCkxB"
+		"eventDate": 1711324800000,
+		"userId": "user_2tuRlzCPhhh5RF0c246YCSWO8gU"
 	},
 	{
 		"name": "Hamilton - Broadway",
@@ -23,8 +23,8 @@
 		"price": 299.99,
 		"totalTickets": 75,
 		"location": "Richard Rodgers Theatre, New York",
-		"eventDate": 1721788200000,
-		"userId": "user_2dOPKmMyZRXXazL7SGLSzhsEmzD"
+		"eventDate": 1712188800000,
+		"userId": "user_2tuRlzCPhhh5RF0c246YCSWO8gU"
 	},
 	{
 		"name": "Coldplay World Tour",
@@ -32,8 +32,8 @@
 		"price": 150.0,
 		"totalTickets": 200,
 		"location": "Wembley Stadium, London",
-		"eventDate": 1726012800000,
-		"userId": "user_2dOPKmMyZRXXazL7SGLSzhsEmzD"
+		"eventDate": 1712966400000,
+		"userId": "user_2tuRlzCPhhh5RF0c246YCSWO8gU"
 	},
 	{
 		"name": "Comic Con 2024",
@@ -41,8 +41,8 @@
 		"price": 85.0,
 		"totalTickets": 1000,
 		"location": "Javits Center, New York",
-		"eventDate": 1728172800000,
-		"userId": "user_2dOPKmMyZRXXazL7SGLSzhsEmzD"
+		"eventDate": 1713484800000,
+		"userId": "user_2tuRlzCPhhh5RF0c246YCSWO8gU"
 	},
 	{
 		"name": "Ed Sheeran Mathematics Tour",
@@ -50,8 +50,8 @@
 		"price": 125.0,
 		"totalTickets": 150,
 		"location": "O2 Arena, London",
-		"eventDate": 1729382400000,
-		"userId": "user_2eRTLnPxYQWWbzM8THMTaisFnzE"
+		"eventDate": 1710720000000,
+		"userId": "user_2tuRlzCPhhh5RF0c246YCSWO8gU"
 	},
 	{
 		"name": "Premier League: Arsenal vs Manchester United",

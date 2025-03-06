@@ -1,6 +1,6 @@
 import { query, mutation } from './_generated/server';
 import { v } from 'convex/values';
-import { ADMIN_EMAILS, ORGANIZER_EMAILS } from '../src/components/utils';
+import { ADMIN_EMAILS, ORGANIZER_EMAILS } from '../src/libs/utils';
 
 export const createUser = mutation({
 	args: {
