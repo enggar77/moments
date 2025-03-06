@@ -6,6 +6,7 @@ import Loading from '../components/Loading';
 import { useUser } from '@clerk/clerk-react';
 import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
+import Swal from 'sweetalert2';
 
 export default function FormEvent() {
 	const [imageUrl, setImageUrl] = useState(null);
@@ -89,8 +90,10 @@ export default function FormEvent() {
 		}
 
 		setLoading(false); // Hide Loading after delay
-		alert('Event successfully saved!'); // Replace with a better UI notification
-
+		Swal.fire({
+			title: 'Event successfuly saved!',
+			confirmButtonColor: 'black',
+		});
 		// Redirect to event list
 		navigate('/');
 	};

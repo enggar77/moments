@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import { supabase } from '../../supabaseClient';
 
 function validateFile(file) {
@@ -5,12 +6,19 @@ function validateFile(file) {
 	const maxSize = 2 * 1024 * 1024; // 2MB
 
 	if (!allowedTypes.includes(file.type)) {
-		alert('Please upload JPEG or PNG');
+		Swal.fire({
+			title: 'Please upload JPEG or PNG',
+			confirmButtonColor: 'black',
+		});
 		return false;
 	}
 
 	if (file.size > maxSize) {
-		alert('File size can not exceed 2MB.');
+		Swal.fire({
+			title: 'File size can not exceed 2MB.',
+			confirmButtonColor: 'black',
+		});
+
 		return false;
 	}
 
