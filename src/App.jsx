@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Error from './components/Error';
+import MyTickets from './pages/MyTickets';
 
 const router = createBrowserRouter([
 	{
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/ticket/:userId',
-				element: <div>My Tickets</div>,
+				element: <MyTickets />,
 			},
 			{
 				path: '/seller',
