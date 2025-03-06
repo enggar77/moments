@@ -16,7 +16,7 @@ export default function SearchBar({ setSearchTerm }) {
 			<input
 				type="text"
 				placeholder="Search for events..."
-				className="input  w-full lg:w-96 pl-10"
+				className="input w-full lg:w-96 pl-10 input-md"
 				name="q"
 				value={inputValue}
 				onChange={(e) => setInputValue(e.target.value)}

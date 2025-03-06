@@ -1,7 +1,113 @@
-export default function PurchaseTicket() {
+import { useEffect, useState } from 'react';
+import { useUser } from '@clerk/clerk-react';
+import { api } from '../../convex/_generated/api';
+import { useQuery } from 'convex/react';
+import ReleaseTicket from '../components/ReleaseTicket';
+import { useNavigate, useLocation } from 'react-router';
+import Button from './Button';
+
+export default function PurchaseTicket({ eventId }) {
+	const navigate = useNavigate();
+	const { pathname } = useLocation();
+	const { user } = useUser();
+	const queuePosition = useQuery(api.waitingList.getQueuePosition, {
+		eventId,
+		userId: user?.id ?? '',
+	});
+
+	const [timeRemaining, setTimeRemaining] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
+
+	const offerExpiresAt = queuePosition?.offerExpiresAt ?? 0;
+	const isExpired = Date.now() > offerExpiresAt;
+
+	useEffect(() => {
+		const calculateTimeRemaining = () => {
+			if (isExpired) {
+				setTimeRemaining('Expired');
+				return;
+			}
+
+			const diff = offerExpiresAt - Date.now();
+			const minutes = Math.floor(diff / 1000 / 60);
+			const seconds = Math.floor((diff / 1000) % 60);
+
+			if (minutes > 0) {
+				setTimeRemaining(
+					`${minutes} minute${minutes === 1 ? '' : 's'} ${seconds} second${
+						seconds === 1 ? '' : 's'
+					}`
+				);
+			} else {
+				setTimeRemaining(
+					`${seconds} second${seconds === 1 ? '' : 's'}`
+				);
+			}
+		};
+
+		calculateTimeRemaining();
+		const interval = setInterval(calculateTimeRemaining, 1000);
+		return () => clearInterval(interval);
+	}, [offerExpiresAt, isExpired]);
+
+	const handlePurchase = async () => {
+		// if (!user) return;
+		// try {
+		//   setIsLoading(true);
+		//   const { sessionUrl } = await createStripeCheckoutSession({
+		//     eventId,
+		//   });
+		//   if (sessionUrl) {
+		//     router.push(sessionUrl);
+		//   }
+		// } catch (error) {
+		//   console.error("Error creating checkout session:", error);
+		// } finally {
+		//   setIsLoading(false);
+		// }
+	};
+
+	if (!user || !queuePosition || queuePosition.status !== 'offered') {
+		return null;
+	}
+
 	return (
-		<div>
-			<h1>Purchase Ticket</h1>
+		<div className="p-5 border-warning border rounded">
+			<div className="space-y-4">
+				<div>
+					<h3 className="text-lg font-semibold">Ticket Reserved</h3>
+					<p className="text-sm text-error">
+						Expires in {timeRemaining}
+					</p>
+				</div>
+
+				{pathname.includes('event/') && (
+					<>
+						<div className="text-sm text-gray-600 leading-relaxed">
+							A ticket has been reserved for you. Complete your
+							purchase before the timer expires to secure your
+							spot at this event.
+						</div>
+
+						<Button
+							onClick={handlePurchase}
+							disabled={isExpired || isLoading}
+							className="btn-md btn-warning w-full"
+						>
+							{isLoading
+								? 'Redirecting to checkout...'
+								: 'Purchase Your Ticket Now →'}
+						</Button>
+
+						<div className="">
+							<ReleaseTicket
+								eventId={eventId}
+								waitingListId={queuePosition._id}
+							/>
+						</div>
+					</>
+				)}
+			</div>
 		</div>
 	);
 }

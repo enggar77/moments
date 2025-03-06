@@ -6,6 +6,7 @@ import Error from './components/Error';
 import MyTickets from './pages/MyTickets';
 import AddEvent from './pages/AddEvent';
 import EditEvent from './pages/EditEvent';
+import EventDetails from './pages/EventDetails';
 
 const router = createBrowserRouter([
 	{
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
 				element: <Home />,
 			},
 			{
-				path: '/ticket/:userId',
+				path: '/ticket/:id',
 				element: <MyTickets />,
 			},
 			{
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
 				element: <EditEvent />
 			},
 			{
-				path: '/event/:eventId',
-				element: <div>Event Details</div>,
+				path: '/event/:id',
+				element: <EventDetails />,
 			},
 			{
 				path: '/dashboard',
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
 					{
 						path: '/dashboard/users',
 						element: <div>All Users</div>,
+					},
+					{
+						path: '/dashboard/transactions',
+						element: <div>All Transactions</div>,
 					},
 				],
 			},

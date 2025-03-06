@@ -14,7 +14,7 @@ import {
 	PencilIcon,
 	StarIcon,
 } from 'lucide-react';
-import PurchaseTicket from './PurchaseTicket';
+import PurchaseTicket from '../components/PurchaseTicket';
 
 export default function EventCard({ eventId }) {
 	const { user } = useUser();

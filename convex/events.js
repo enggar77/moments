@@ -1,18 +1,8 @@
 import { query, mutation } from './_generated/server';
-import { ConvexError, v } from 'convex/values';
+import { v } from 'convex/values';
 import { DURATIONS, WAITING_LIST_STATUS, TICKET_STATUS } from './constants';
 import { internal } from './_generated/api';
 import { processQueue } from './waitingList';
-import { MINUTE, RateLimiter } from '@convex-dev/rate-limiter';
-
-// Initialize rate limiter
-const rateLimiter = new RateLimiter(rateLimiter, {
-	queueJoin: {
-		kind: 'fixed window',
-		rate: 3, // 3 joins allowed
-		period: 30 * MINUTE, // in 30 minutes
-	},
-});
 
 export const get = query({
 	args: {},
@@ -109,17 +99,10 @@ export const joinWaitingList = mutation({
 	// Function takes an event ID and user ID as arguments
 	args: { eventId: v.id('events'), userId: v.string() },
 	handler: async (ctx, { eventId, userId }) => {
-		// Rate limit check
-		const status = await rateLimiter.limit(ctx, 'queueJoin', {
-			key: userId,
+		console.log('Starting joinWaitingList handler', {
+			eventId,
+			userId,
 		});
-		if (!status.ok) {
-			throw new ConvexError(
-				`You've joined the waiting list too many times. Please wait ${Math.ceil(
-					status.retryAfter / (60 * 1000)
-				)} minutes before trying again.`
-			);
-		}
 
 		// First check if user already has an active entry in waiting list for this event
 		// Active means any status except EXPIRED
