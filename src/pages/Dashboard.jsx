@@ -3,7 +3,7 @@ import { api } from '../../convex/_generated/api';
 import { useUser } from '@clerk/clerk-react';
 import { Link, useNavigate, Outlet } from 'react-router';
 import Sidebar from '../components/Sidebar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Overview from './Overview';
 
 export default function Dashboard() {
@@ -19,13 +19,23 @@ export default function Dashboard() {
 
 	// if (userRole.role !== 'admin') navigate('/');
 
+	useEffect(() => {
+		document.body.style.overflow = isSidebarOpen ? 'hidden' : 'auto';
+	}, [isSidebarOpen]);
+
 	return (
-		<div className="flex h-screen">
+		<div className="flex h-screen flex-col md:flex-row p-4">
 			<Sidebar
 				isOpen={isSidebarOpen}
 				onClose={() => setIsSidebarOpen(false)}
 			/>
-			<div className="flex-1 p-4">
+			<div className="flex-1 p-4 overflow-auto">
+				<button
+					className="md:hidden p-2 bg-gray-200 rounded shadow-lg"
+					onClick={() => setIsSidebarOpen(true)}
+				>
+					☰ Open Menu
+				</button>
 				<Overview />
 				<div>
 					<Outlet />

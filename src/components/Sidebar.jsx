@@ -1,41 +1,24 @@
-import { useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { LineChart, Music, Ticket, Users, X, Menu } from 'lucide-react';
 
-export default function Sidebar() {
+export default function Sidebar({ isOpen, onClose }) {
 	const { pathname } = useLocation();
-	const [isOpen, setIsOpen] = useState(false);
-
-	const toggleSidebar = () => setIsOpen(!isOpen);
 
 	return (
 		<>
-			{/* Hamburger Button */}
-			<button
-				className="md:hidden fixed top-4 left-4 p-2 bg-gray-200 rounded shadow-lg z-50"
-				onClick={toggleSidebar}
-			>
-				<Menu className="w-6 h-6" />
-			</button>
-
-			{/* Overlay */}
 			{isOpen && (
 				<div
-					className="fixed inset-0 md:hidden"
-					onClick={toggleSidebar}
+					className="fixed inset-0 bg-opacity-50 md:hidden"
+					onClick={onClose}
 				></div>
 			)}
 
-			{/* Sidebar */}
 			<div
-				className={`fixed md:relative top-0 left-0 w-64 h-full bg-white shadow-lg p-4 flex flex-col gap-4 transform transition-transform duration-300 ease-in-out ${
-					isOpen ? 'translate-x-0' : '-translate-x-full'
-				} md:translate-x-0 z-50`}
+				className={`fixed md:relative top-0 left-0 w-64 h-full bg-white shadow-lg p-4 flex flex-col gap-4 transform transition-transform duration-300 ease-in-out z-50 ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
 			>
-				{/* Close Button */}
 				<button
-					className="md:hidden self-end p-2 rounded bg-gray-200 hover:bg-gray-300 transition-colors"
-					onClick={toggleSidebar}
+					className="md:hidden self-end p-2 bg-gray-200 rounded"
+					onClick={onClose}
 				>
 					<X className="w-6 h-6" />
 				</button>
@@ -46,27 +29,27 @@ export default function Sidebar() {
 				<nav className="flex flex-col gap-2">
 					<Link
 						to="/dashboard"
-						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard' ? 'bg-gray-200' : ''}`}
+						className={`p-3 rounded-lg hover:bg-gray-200 ${pathname === '/dashboard' ? 'bg-gray-200' : ''}`}
 					>
-						<LineChart className="w-5 h-5" /> Overview
+						<LineChart className="w-5 h-5 inline" /> Overview
 					</Link>
 					<Link
 						to="/dashboard/events"
-						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard/events' ? 'bg-gray-200' : ''}`}
+						className={`p-3 rounded-lg hover:bg-gray-200 ${pathname === '/dashboard/events' ? 'bg-gray-200' : ''}`}
 					>
-						<Music className="w-5 h-5" /> Concerts Management
+						<Music className="w-5 h-5 inline" /> Concerts Management
 					</Link>
 					<Link
 						to="/dashboard/transactions"
-						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard/transactions' ? 'bg-gray-200' : ''}`}
+						className={`p-3 rounded-lg hover:bg-gray-200 ${pathname === '/dashboard/transactions' ? 'bg-gray-200' : ''}`}
 					>
-						<Ticket className="w-5 h-5" /> Transactions
+						<Ticket className="w-5 h-5 inline" /> Transactions
 					</Link>
 					<Link
 						to="/dashboard/users"
-						className={`flex items-center gap-2 p-3 rounded-lg transition-colors duration-200 hover:bg-gray-200 ${pathname === '/dashboard/users' ? 'bg-gray-200' : ''}`}
+						className={`p-3 rounded-lg hover:bg-gray-200 ${pathname === '/dashboard/users' ? 'bg-gray-200' : ''}`}
 					>
-						<Users className="w-5 h-5" /> Users
+						<Users className="w-5 h-5 inline" /> Users
 					</Link>
 				</nav>
 			</div>
