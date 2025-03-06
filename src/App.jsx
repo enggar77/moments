@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Error from './components/Error';
+import TransactionManagement from './pages/TransactionManagement';
 
 const router = createBrowserRouter([
 	{
@@ -39,7 +40,15 @@ const router = createBrowserRouter([
 						path: '/dashboard/users',
 						element: <div>All Users</div>,
 					},
+					// {
+					// 	path: '/dashboard/transactions',
+					// 	element: <TransactionManagement />,
+					// },
 				],
+			},
+			{
+				path: 'dashboard/transactions',
+				element: <TransactionManagement />,
 			},
 		],
 	},
