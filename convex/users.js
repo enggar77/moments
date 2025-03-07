@@ -33,7 +33,8 @@ export const createUser = mutation({
 
 export const getAllUsers = query({
 	handler: async (ctx) => {
-		return await ctx.db.query('users').all();
+		// Fixed: using collect() instead of all()
+		return await ctx.db.query('users').collect();
 	},
 });
 

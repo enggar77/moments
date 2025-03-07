@@ -27,7 +27,7 @@ const router = createBrowserRouter([
 				element: <MyTickets />,
 			},
 			{
-				path: '/sell',
+				path: '/seller',
 				element: <AddEvent />,
 			},
 			{
