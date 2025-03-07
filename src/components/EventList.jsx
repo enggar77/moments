@@ -4,13 +4,17 @@ import Loading from './Loading';
 import { CalendarDays, Ticket } from 'lucide-react';
 import EventCard from './EventCard';
 
-export default function EventList() {
-	const events = useQuery(api.events.get);
+export default function EventList({ searchTerm }) {
+	let events = useQuery(api.events.get);
 
 	if (!events) {
 		return <Loading />;
 	}
 
+	events = events.filter((event) =>
+		event.name.toLowerCase().includes(searchTerm.toLowerCase())
+	);
+	
 	const upcomingEvents = events
 		.filter((event) => event.eventDate > Date.now())
 		.sort((a, b) => a.eventDate - b.eventDate);
