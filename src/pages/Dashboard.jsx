@@ -5,13 +5,8 @@ import { Link, useNavigate } from 'react-router';
 
 export default function Dashboard() {
 	const navigate = useNavigate();
-	const { user, isLoaded } = useUser();
-
-	// Only run the query if user exists and is loaded
-	const userRole = useQuery(
-		api.users.getUser,
-		isLoaded && user?.id ? { userId: user.id } : 'skip'
-	);
+	const { user } = useUser();
+	const userRole = useQuery(api.users.getUser, { userId: user.id });
 
 	if (userRole.role !== 'admin') navigate('/');
 

@@ -157,12 +157,10 @@ export default function EventCard({ eventId }) {
 			{/* Event Image */}
 			{imageUrl && (
 				<div className="relative w-full h-48">
-					<Image
+					<img
 						src={imageUrl}
 						alt={event.name}
-						fill
 						className="object-cover"
-						priority
 					/>
 					<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 				</div>

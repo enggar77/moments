@@ -74,3 +74,35 @@ export const updateOrCreateUserStripeConnectId = mutation({
 		await ctx.db.patch(user._id, { stripeConnectId: args.stripeConnectId });
 	},
 });
+
+export const deleteUser = mutation({
+	args: { userId: v.string() },
+	handler: async (ctx, args) => {
+		const user = await ctx.db
+			.query('users')
+			.withIndex('by_userId', (q) => q.eq('userId', args.userId))
+			.first();
+
+		if (!user) {
+			throw new Error('User not found');
+		}
+
+		await ctx.db.delete(user._id);
+	},
+});
+
+export const changeUserRole = mutation({
+	args: { userId: v.string(), role: v.string() },
+	handler: async (ctx, args) => {
+		const user = await ctx.db
+			.query('users')
+			.withIndex('by_userId', (q) => q.eq('userId', args.userId))
+			.first();
+
+		if (!user) {
+			throw new Error('User not found');
+		}
+
+		await ctx.db.patch(user._id, { role: args.role });
+	},
+});

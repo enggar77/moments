@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Error from './components/Error';
 import EventDetails from './pages/EventDetails';
+import Seller from './pages/Seller';
 
 const router = createBrowserRouter([
 	{
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/seller',
-				element: <div>Sell Tickets</div>,
+				element: <Seller />,
 			},
 			{
 				path: '/event/:id',

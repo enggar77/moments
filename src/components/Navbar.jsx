@@ -77,7 +77,7 @@ export default function Navbar() {
 			<div className="text-sm font-medium">
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
-					<Link to="/sell">
+					<Link to="/seller">
 						<Button className={'btn-sm'}>Sell Tickets</Button>
 					</Link>
 				)}
