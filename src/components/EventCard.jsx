@@ -150,7 +150,7 @@ export default function EventCard({ eventId }) {
 	return (
 		<div
 			onClick={() => navigate(`/event/${eventId}`)}
-			className={`bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 cursor-pointer overflow-hidden relative ${
+			className={`rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-base-200 cursor-pointer overflow-hidden relative ${
 				isPastEvent ? 'opacity-75 hover:opacity-100' : ''
 			}`}
 		>

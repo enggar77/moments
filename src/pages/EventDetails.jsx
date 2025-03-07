@@ -9,6 +9,19 @@ import { useStorageUrl } from '../libs/utils';
 import Button from '../components/Button';
 import { useParams } from 'react-router';
 
+// InfoCard component for displaying event details with icons
+function InfoCard({ icon: Icon, label, value }) {
+	return (
+		<div className="text-sm p-4 rounded-lg border border-warning/50 bg-warning/10 flex flex-col">
+			<div className="flex items-center gap-2 mb-2">
+				<Icon className="w-5 h-5" />
+				<span className="font-semibold">{label}</span>
+			</div>
+			<span className="text-gray-600">{value}</span>
+		</div>
+	);
+}
+
 export default function EventPage() {
 	const { user } = useUser();
 	const params = useParams();
@@ -25,9 +38,9 @@ export default function EventPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-base-200">
+		<div className=" bg-base-200 min-h-screen">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<div className="bg-white rounded-xl shadow-sm overflow-hidden">
+				<div className="bg-base-100 rounded-xl shadow-sm overflow-hidden">
 					{imageUrl && (
 						<div className="aspect-[21/9] relative w-full">
 							<img
@@ -43,74 +56,48 @@ export default function EventPage() {
 							{/* Left Column - Event Details */}
 							<div className="space-y-8">
 								<div>
-									<h1 className="text-4xl font-bold text-gray-900 mb-4">
+									<h1 className="text-4xl font-bold mb-4">
 										{event.name}
 									</h1>
-									<p className="text-lg text-gray-600">
+									<p className="text-lg">
 										{event.description}
 									</p>
 								</div>
 
 								<div className="grid grid-cols-2 gap-6">
-									<div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-										<div className="flex items-center text-gray-600 mb-1">
-											<CalendarDays className="w-5 h-5 mr-2 text-blue-600" />
-											<span className="text-sm font-medium">
-												Date
-											</span>
-										</div>
-										<p className="text-gray-900">
-											{new Date(
-												event.eventDate
-											).toLocaleDateString()}
-										</p>
-									</div>
+									<InfoCard
+										icon={CalendarDays}
+										label="Date"
+										value={new Date(
+											event.eventDate
+										).toLocaleDateString()}
+									/>
 
-									<div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-										<div className="flex items-center text-gray-600 mb-1">
-											<MapPin className="w-5 h-5 mr-2 text-blue-600" />
-											<span className="text-sm font-medium">
-												Location
-											</span>
-										</div>
-										<p className="text-gray-900">
-											{event.location}
-										</p>
-									</div>
+									<InfoCard
+										icon={MapPin}
+										label="Location"
+										value={event.location}
+									/>
 
-									<div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-										<div className="flex items-center text-gray-600 mb-1">
-											<Ticket className="w-5 h-5 mr-2 text-blue-600" />
-											<span className="text-sm font-medium">
-												Price
-											</span>
-										</div>
-										<p className="text-gray-900">
-											£{event.price.toFixed(2)}
-										</p>
-									</div>
+									<InfoCard
+										icon={Ticket}
+										label="Price"
+										value={`£${event.price.toFixed(2)}`}
+									/>
 
-									<div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-										<div className="flex items-center text-gray-600 mb-1">
-											<Users className="w-5 h-5 mr-2 text-blue-600" />
-											<span className="text-sm font-medium">
-												Availability
-											</span>
-										</div>
-										<p className="text-gray-900">
-											{availability.totalTickets -
-												availability.purchasedCount}{' '}
-											/ {availability.totalTickets} left
-										</p>
-									</div>
+									<InfoCard
+										icon={Users}
+										label="Availability"
+										value={`${availability.totalTickets - availability.purchasedCount} / ${availability.totalTickets} left`}
+									/>
 								</div>
 
 								{/* Additional Event Information */}
-								<div className="bg-blue-50 border border-blue-100 rounded-lg p-6">
-									<h3 className="text-lg font-semibold text-blue-900 mb-2">
+								<div className="bg-warning/10 border border-warning/50 rounded-lg p-6">
+									<h3 className="text-lg font-semibold mb-2">
 										Event Information
 									</h3>
-									<ul className="space-y-2 text-blue-700">
+									<ul className="space-y-2">
 										<li>
 											• Please arrive 30 minutes before
 											the event starts
@@ -133,7 +120,7 @@ export default function EventPage() {
 										/>
 									) : (
 										<SignInButton>
-											<Button className="w-full">
+											<Button className="w-full btn-warning">
 												Sign in to buy tickets
 											</Button>
 										</SignInButton>

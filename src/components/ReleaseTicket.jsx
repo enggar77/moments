@@ -29,7 +29,7 @@ export default function ReleaseTicket({ eventId, waitingListId }) {
 		<Button
 			onClick={handleRelease}
 			disabled={isReleasing}
-			className={'w-full btn-error'}
+			className={'w-full btn-error btn-link'}
 		>
 			<XCircle className="w-4 h-4" />
 			{isReleasing ? 'Releasing...' : 'Release Ticket Offer'}

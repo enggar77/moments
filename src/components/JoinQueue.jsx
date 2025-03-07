@@ -83,7 +83,7 @@ export default function JoinQueue({ eventId, userId }) {
 						<Button
 							onClick={handleJoinQueue}
 							disabled={isPastEvent || userRole.role !== 'user'}
-							className="w-full btn-lg"
+							className="w-full btn-lg btn-warning"
 						>
 							Buy Ticket
 						</Button>

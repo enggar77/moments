@@ -50,7 +50,10 @@ export default function Navbar() {
 	if (!user) {
 		return navbarLayout(
 			<SignedOut>
-				<Button className={'btn-sm'} onClick={() => openSignIn()}>
+				<Button
+					className={'btn-sm btn-primary'}
+					onClick={() => openSignIn()}
+				>
 					Sign In
 				</Button>
 			</SignedOut>
@@ -78,19 +81,25 @@ export default function Navbar() {
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
 					<Link to="/seller">
-						<Button className={'btn-sm'}>Sell Tickets</Button>
+						<Button className={'btn-sm btn-primary'}>
+							Sell Tickets
+						</Button>
 					</Link>
 				)}
 				{/* Regular User */}
 				{userRole.role === 'user' && (
 					<Link to={`ticket/${user.id}`}>
-						<Button className={'btn-sm'}>My Tickets</Button>
+						<Button className={'btn-sm btn-primary'}>
+							My Tickets
+						</Button>
 					</Link>
 				)}
 				{/* Admin */}
 				{userRole.role === 'admin' && (
 					<Link to={`/dashboard`}>
-						<Button className={'btn-sm'}>Dashboard</Button>
+						<Button className={'btn-sm btn-primary'}>
+							Dashboard
+						</Button>
 					</Link>
 				)}
 			</div>

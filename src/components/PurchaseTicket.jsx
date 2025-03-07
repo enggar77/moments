@@ -72,7 +72,7 @@ export default function PurchaseTicket({ eventId }) {
 	}
 
 	return (
-		<div className="p-5 border-warning border rounded">
+		<div className="p-5 border-warning/50 border rounded">
 			<div className="space-y-4">
 				<div>
 					<h3 className="text-lg font-semibold">Ticket Reserved</h3>
@@ -92,7 +92,7 @@ export default function PurchaseTicket({ eventId }) {
 						<Button
 							onClick={handlePurchase}
 							disabled={isExpired || isLoading}
-							className="btn-md btn-warning w-full"
+							className="btn-lg btn-warning w-full"
 						>
 							{isLoading
 								? 'Redirecting to checkout...'
