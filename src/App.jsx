@@ -9,6 +9,8 @@ import EditEvent from './pages/EditEvent';
 import EventDetails from './pages/EventDetails';
 import TransactionManagement from './pages/TransactionManagement';
 import Overview from './pages/Overview';
+import EventManagement from './pages/admin/EventManagement';
+import UserManagement from './pages/admin/UserManagement';
 
 const router = createBrowserRouter([
 	{
@@ -47,11 +49,11 @@ const router = createBrowserRouter([
 					},
 					{
 						path: '/dashboard/events',
-						element: <div>All Events</div>,
+						element: <EventManagement />,
 					},
 					{
 						path: '/dashboard/users',
-						element: <div>All Users</div>,
+						element: <UserManagement />,
 					},
 					{
 						path: '/dashboard/transactions',
