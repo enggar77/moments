@@ -1,9 +1,9 @@
-import EventCard from '../components/EventCard';
+import EventCard from '../components/feature/EventCard';
 import { api } from '../../convex/_generated/api';
 import { useQuery } from 'convex/react';
 import { CalendarDays, MapPin, Ticket, Users } from 'lucide-react';
 import Loading from '../components/Loading';
-import JoinQueue from '../components/JoinQueue';
+import JoinQueue from '../components/feature/JoinQueue';
 import { SignInButton, useUser } from '@clerk/clerk-react';
 import { useStorageUrl } from '../libs/utils';
 import Button from '../components/Button';

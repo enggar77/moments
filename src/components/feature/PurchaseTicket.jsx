@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useQuery } from 'convex/react';
-import ReleaseTicket from '../components/ReleaseTicket';
+import ReleaseTicket from './ReleaseTicket';
 import { useNavigate, useLocation } from 'react-router';
-import Button from './Button';
+import Button from '../Button';
 
 export default function PurchaseTicket({ eventId }) {
 	const navigate = useNavigate();

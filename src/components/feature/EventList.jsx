@@ -1,6 +1,6 @@
 import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
-import Loading from './Loading';
+import { api } from '../../../convex/_generated/api';
+import Loading from '../Loading';
 import { CalendarDays, Ticket } from 'lucide-react';
 import EventCard from './EventCard';
 
@@ -29,7 +29,7 @@ export default function EventList() {
 						Discover & book tickets for amazing events
 					</p>
 				</div>
-				<div className=" px-4 py-2 rounded-lg shadow-sm border ">
+				<div className=" px-4 py-2 rounded-lg shadow-sm border bg-info">
 					<div className="flex items-center gap-2 ">
 						<CalendarDays className="w-5 h-5" />
 						<span className="font-medium">

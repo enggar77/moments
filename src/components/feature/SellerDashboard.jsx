@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useNavigate } from 'react-router';
 import { CalendarDays, Cog, Plus } from 'lucide-react';
-import Spinner from './Spinner';
-import { createStripeConnectAccount } from '../libs/createStripeConnectAccount';
-import { createStripeConnectAccountLink } from '../libs/createStripeConnectAccountLink';
-import { createStripeConnectLoginLink } from '../libs/createStripeConnectLoginLink';
-import { getStripeConnectAccountStatus } from '../libs/getStripeConnectAccountStatus';
+import Loading from '../Loading';
+import { createStripeConnectAccount } from '../../libs/createStripeConnectAccount';
+import { createStripeConnectAccountLink } from '../../libs/createStripeConnectAccountLink';
+import { createStripeConnectLoginLink } from '../../libs/createStripeConnectLoginLink';
+import { getStripeConnectAccountStatus } from '../../libs/getStripeConnectAccountStatus';
 
 export default function SellerDashboard() {
 	const [accountCreatePending, setAccountCreatePending] = useState(false);
@@ -32,7 +32,7 @@ export default function SellerDashboard() {
 	}, [stripeConnectId]);
 
 	if (stripeConnectId === undefined) {
-		return <Spinner />;
+		return <Loading />;
 	}
 
 	const handleManageAccount = async () => {

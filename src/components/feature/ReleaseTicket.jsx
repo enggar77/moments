@@ -1,8 +1,8 @@
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useMutation } from 'convex/react';
 import { useState } from 'react';
 import { XCircle } from 'lucide-react';
-import Button from './Button';
+import Button from '../Button';
 
 export default function ReleaseTicket({ eventId, waitingListId }) {
 	const [isReleasing, setIsReleasing] = useState(false);

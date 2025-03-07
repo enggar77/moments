@@ -1,11 +1,11 @@
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useMutation, useQuery } from 'convex/react';
-import { WAITING_LIST_STATUS } from '../../convex/constants';
-import Loading from './Loading';
+import { WAITING_LIST_STATUS } from '../../../convex/constants';
+import Loading from '../Loading';
 import { Clock, OctagonXIcon } from 'lucide-react';
-import { useToast } from '../libs/useToast';
+import { useToast } from '../../libs/useToast';
 import { ConvexError } from 'convex/values';
-import Button from './Button';
+import Button from '../Button';
 import { useUser } from '@clerk/clerk-react';
 
 export default function JoinQueue({ eventId, userId }) {
