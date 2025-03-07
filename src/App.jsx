@@ -32,6 +32,14 @@ const router = createBrowserRouter([
 				element: <Seller />,
 			},
 			{
+				path: '/connect/return/:accountId',
+				element: <Seller />,
+			},
+			{
+				path: '/connect/refresh/:accountId',
+				element: <Seller />,
+			},
+			{
 				path: '/seller/events/:eventId/edit',
 				element: <div>edit</div>,
 			},
