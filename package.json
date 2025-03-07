@@ -12,12 +12,15 @@
   "dependencies": {
     "@clerk/clerk-react": "^5.24.1",
     "@convex-dev/rate-limiter": "^0.2.6",
+    "@supabase/supabase-js": "^2.49.1",
     "@tailwindcss/vite": "^4.0.9",
     "convex": "^1.19.5",
     "lucide-react": "^0.477.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router": "^7.2.0",
+    "sweetalert2": "^11.17.2",
+    "sweetalert2-react-content": "^5.1.0",
     "tailwindcss": "^4.0.9"
   },
   "devDependencies": {
