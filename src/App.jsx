@@ -11,6 +11,7 @@ import TransactionManagement from './pages/TransactionManagement';
 import Overview from './pages/Overview';
 import EventManagement from './pages/admin/EventManagement';
 import UserManagement from './pages/admin/UserManagement';
+import Seller from './pages/Seller';
 
 const router = createBrowserRouter([
 	{
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/seller',
-				element: <div>Add events</div>,
+				element: <Seller />,
 			},
 			{
 				path: '/seller/events/:eventId/edit',

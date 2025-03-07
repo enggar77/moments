@@ -7,7 +7,7 @@ import {
 } from '@clerk/clerk-react';
 
 import Button from './Button';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import SearchBar from './SearchBar';
@@ -15,6 +15,7 @@ import SearchBar from './SearchBar';
 export default function Navbar() {
 	const { user, isLoaded } = useUser();
 	const { openSignIn } = useClerk();
+	const { pathname } = useLocation();
 
 	// Only run the query if user exists and is loaded
 	const userRole = useQuery(
@@ -30,16 +31,20 @@ export default function Navbar() {
 				</Link>
 
 				<div className="flex items-center gap-10">
-					<div className="hidden lg:block">
-						<SearchBar />
-					</div>
+					{pathname === '/' && (
+						<div className="hidden lg:block">
+							<SearchBar />
+						</div>
+					)}
 					{children}
 				</div>
 			</div>
 
-			<div className="lg:hidden">
-				<SearchBar />
-			</div>
+			{pathname === '/' && (
+				<div className="lg:hidden">
+					<SearchBar />
+				</div>
+			)}
 		</div>
 	);
 

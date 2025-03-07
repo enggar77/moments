@@ -118,7 +118,6 @@ const ITEMS_PER_PAGE = 10;
 
 export default function AdminUserManagement() {
 	const userDatas = useQuery(api.users.getAllUsers);
-	console.log(userDatas);
 	const [users, setUsers] = useState(usersData);
 	const [currentPage, setCurrentPage] = useState(1);
 	const [searchTerm, setSearchTerm] = useState('');
