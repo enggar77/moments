@@ -18,19 +18,17 @@ export default function AdminUserManagement() {
 	const [searchTerm, setSearchTerm] = useState('');
 	const [roleFilter, setRoleFilter] = useState('all');
 	const [sortBy, setSortBy] = useState('name');
+	const [currentPage, setCurrentPage] = useState(1);
 
 	if (!usersData) {
 		return <Loading />;
 	}
-
-	console.log(usersData);
 
 	function handleEdit(user) {
 		setSelectedUser(user);
 		setIsOpen(true);
 	}
 	// const [users, setUsers] = useState(usersData);
-	// const [currentPage, setCurrentPage] = useState(1);
 
 	// const toggleStatus = (id) => {
 	// 	setUsers(
@@ -60,11 +58,11 @@ export default function AdminUserManagement() {
 		return 0;
 	});
 
-	// const totalPages = Math.ceil(sortedUsers.length / ITEMS_PER_PAGE);
-	// const currentData = sortedUsers.slice(
-	// 	(currentPage - 1) * ITEMS_PER_PAGE,
-	// 	currentPage * ITEMS_PER_PAGE
-	// );
+	const totalPages = Math.ceil(sortedUsers.length / ITEMS_PER_PAGE);
+	const currentData = sortedUsers.slice(
+		(currentPage - 1) * ITEMS_PER_PAGE,
+		currentPage * ITEMS_PER_PAGE
+	);
 
 	return (
 		<div className="p-6 block">
@@ -109,7 +107,7 @@ export default function AdminUserManagement() {
 							</tr>
 						</thead>
 						<tbody>
-							{sortedUsers.map((user) => (
+							{currentData.map((user) => (
 								<tr key={user._id}>
 									<td className="flex items-center gap-3 p-3">
 										<img
@@ -155,7 +153,7 @@ export default function AdminUserManagement() {
 					<p>
 						Showing {usersData.length} of {usersData.length} users
 					</p>
-					{/* <div className="join gap-2">
+					<div className="join gap-2">
 						<button
 							className="btn btn-sm rounded-md w-20 hover:border-black hover:bg-white"
 							disabled={currentPage === 1}
@@ -179,7 +177,7 @@ export default function AdminUserManagement() {
 						>
 							Next <ChevronRight size={16} />
 						</button>
-					</div> */}
+					</div>
 				</div>
 			</div>
 		</div>
