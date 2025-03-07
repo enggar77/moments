@@ -23,23 +23,23 @@ export default function Navbar() {
 	);
 
 	const navbarLayout = (children) => (
-		<div className="flex flex-col p-3 gap-4 md:px-10 border-b border-base-content/10 sticky inset-0 bg-base-200 z-10">
+		<div className="flex flex-col p-3 gap-4 md:px-10 border-b border-base-content/10 sticky inset-0 bg-base-100 z-10">
 			<div className="flex justify-between items-center">
 				<Link to="/">
 					<h1 className="font-semibold text-xl">MOMENTS</h1>
 				</Link>
 
 				<div className="flex items-center gap-10">
-					{/* <div className="hidden lg:block">
+					<div className="hidden lg:block">
 						<SearchBar />
-					</div> */}
+					</div>
 					{children}
 				</div>
 			</div>
 
-			{/* <div className="lg:hidden">
+			<div className="lg:hidden">
 				<SearchBar />
-			</div> */}
+			</div>
 		</div>
 	);
 

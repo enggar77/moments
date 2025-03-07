@@ -11,12 +11,12 @@ export default function Dashboard() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 	// Only run the query if user exists and is loaded
-	// const userRole = useQuery(
-	// 	api.users.getUser,
-	// 	isLoaded && user?.id ? { userId: user.id } : 'skip'
-	// );
+	const userRole = useQuery(
+		api.users.getUser,
+		isLoaded && user?.id ? { userId: user.id } : 'skip'
+	);
 
-	// if (userRole.role !== 'admin') navigate('/');
+	if (!user || userRole.role !== 'admin') navigate('/');
 
 	useEffect(() => {
 		document.body.style.overflow = isSidebarOpen ? 'hidden' : 'auto';

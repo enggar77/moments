@@ -3,9 +3,9 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Error from './components/Error';
-import MyTickets from './pages/MyTickets';
-import AddEvent from './pages/AddEvent';
-import EditEvent from './pages/EditEvent';
+// import MyTickets from './pages/MyTickets';
+// import AddEvent from './pages/AddEvent';
+// import EditEvent from './pages/EditEvent';
 import EventDetails from './pages/EventDetails';
 import TransactionManagement from './pages/TransactionManagement';
 import Overview from './pages/Overview';
@@ -24,15 +24,15 @@ const router = createBrowserRouter([
 			},
 			{
 				path: '/ticket/:id',
-				element: <MyTickets />,
+				element: <div>my tickets</div>,
 			},
 			{
 				path: '/seller',
-				element: <AddEvent />,
+				element: <div>Add events</div>,
 			},
 			{
 				path: '/seller/events/:eventId/edit',
-				element: <EditEvent />,
+				element: <div>edit</div>,
 			},
 			{
 				path: '/event/:id',

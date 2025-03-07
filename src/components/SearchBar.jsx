@@ -1,15 +1,9 @@
 import { Form } from 'react-router';
 import { Search } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import useDebounce from '../hooks/useDebounce';
+import { useState } from 'react';
 
-export default function SearchBar({ setSearchTerm }) {
+export default function SearchBar() {
 	const [inputValue, setInputValue] = useState('');
-	const debouncedValue = useDebounce(inputValue, 500);
-
-	useEffect(() => {
-		setSearchTerm(debouncedValue);
-	}, [debouncedValue, setSearchTerm]);
 
 	return (
 		<Form action="/search" className="relative w-full md:w-auto">
