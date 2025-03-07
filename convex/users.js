@@ -33,7 +33,7 @@ export const createUser = mutation({
 
 export const getAllUsers = query({
 	handler: async (ctx) => {
-		return await ctx.db.query('users').all();
+		return await ctx.db.query('users').collect();
 	},
 });
 
@@ -72,5 +72,19 @@ export const updateOrCreateUserStripeConnectId = mutation({
 		}
 
 		await ctx.db.patch(user._id, { stripeConnectId: args.stripeConnectId });
+	},
+});
+
+export const updateUserRole = mutation({
+	args: {
+		userId: v.id('users'),
+		role: v.union(
+			v.literal('user'),
+			v.literal('organizer'),
+			v.literal('admin')
+		),
+	},
+	handler: async (ctx, { userId, role }) => {
+		await ctx.db.patch(userId, { role });
 	},
 });
