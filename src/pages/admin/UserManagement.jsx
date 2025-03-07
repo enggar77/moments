@@ -5,6 +5,7 @@ import { api } from '../../../convex/_generated/api';
 import Loading from '../../components/Loading';
 import Button from '../../components/Button';
 import EditUser from '../../components/EditUser';
+import SearchBar from '../../components/SearchBar';
 
 const ITEMS_PER_PAGE = 10;
 const defaultAvatar =
@@ -14,6 +15,8 @@ export default function AdminUserManagement() {
 	const [isOpen, setIsOpen] = useState(false);
 	const usersData = useQuery(api.users.getAllUsers);
 	const [selectedUser, setSelectedUser] = useState(null);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [roleFilter, setRoleFilter] = useState('all');
 
 	if (!usersData) {
 		return <Loading />;
@@ -45,12 +48,12 @@ export default function AdminUserManagement() {
 	// 	);
 	// };
 
-	// const filteredUsers = users.filter(
-	// 	(user) =>
-	// 		(statusFilter === 'All' || user.status === statusFilter) &&
-	// 		(user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-	// 			user.email.toLowerCase().includes(searchTerm.toLowerCase()))
-	// );
+	const filteredUsers = usersData.filter(
+		(user) =>
+			(roleFilter === 'all' || user.role === roleFilter) &&
+			(user.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+				user.email.toLowerCase().includes(searchTerm.toLowerCase()))
+	);
 
 	// const sortedUsers = [...filteredUsers].sort((a, b) => {
 	// 	if (sortBy === 'Latest') return new Date(b.date) - new Date(a.date);
@@ -69,24 +72,23 @@ export default function AdminUserManagement() {
 		<div className="p-6 block">
 			<div className="bg-white p-6 rounded-lg shadow-md">
 				<div className="flex flex-row justify-between items-center gap-4">
-					<input
-						type="text"
+					<SearchBar
+						setSearchTerm={setSearchTerm}
 						placeholder="Search users..."
-						className="input input-bordered "
-						// value={searchTerm}
-						// onChange={(e) => setSearchTerm(e.target.value)}
 					/>
 					<div className="flex gap-2">
-						{/* <select
-							className="select select-bordered text-sm"
-							value={statusFilter}
-							onChange={(e) => setStatusFilter(e.target.value)}
-						>
-							<option>All</option>
-							<option>Active</option>
-							<option>Blocked</option>
-						</select>
 						<select
+							className="select select-bordered text-sm"
+							value={roleFilter}
+							onChange={(e) => setRoleFilter(e.target.value)}
+						>
+							<option value="all">All</option>
+							<option value="user">User</option>
+							<option value="organizer">Organizer</option>
+							<option value="admin">Admin</option>
+						</select>
+
+						{/* <select
 							className="select select-bordered text-sm"
 							value={sortBy}
 							onChange={(e) => setSortBy(e.target.value)}
@@ -109,7 +111,7 @@ export default function AdminUserManagement() {
 							</tr>
 						</thead>
 						<tbody>
-							{usersData.map((user) => (
+							{filteredUsers.map((user) => (
 								<tr key={user._id}>
 									<td className="flex items-center gap-3 p-3">
 										<img
