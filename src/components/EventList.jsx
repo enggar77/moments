@@ -14,7 +14,7 @@ export default function EventList({ searchTerm }) {
 	events = events.filter((event) =>
 		event.name.toLowerCase().includes(searchTerm.toLowerCase())
 	);
-	
+
 	const upcomingEvents = events
 		.filter((event) => event.eventDate > Date.now())
 		.sort((a, b) => a.eventDate - b.eventDate);
@@ -33,7 +33,7 @@ export default function EventList({ searchTerm }) {
 						Discover & book tickets for amazing events
 					</p>
 				</div>
-				<div className=" px-4 py-2 rounded-lg shadow-sm border ">
+				<div className=" px-4 py-2 rounded-lg shadow-sm border bg-accent">
 					<div className="flex items-center gap-2 ">
 						<CalendarDays className="w-5 h-5" />
 						<span className="font-medium">

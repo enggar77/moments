@@ -1,4 +1,57 @@
 @import 'tailwindcss';
-@plugin 'daisyui' {
-	themes: lofi --default;
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+	name: 'summerVibes'; /* Custom Theme Name */
+	default: true;
+	prefersdark: false;
+	color-scheme: light;
+
+	--color-base-100: #fbf8ef; /* Soft Cream */
+	--color-base-200: #b4ebe6; /* Light Aqua */
+	--color-base-300: #80cbc4; /* Teal */
+	--color-base-content: #333333; /* Dark Gray for text */
+
+	--color-primary: #80cbc4; /* Teal */
+	--color-primary-content: #ffffff; /* White for contrast */
+
+	--color-secondary: #b4ebe6; /* Light Aqua */
+	--color-secondary-content: #333333;
+
+	--color-accent: #ffb433; /* Warm Orange */
+	--color-accent-content: #333333;
+
+	--color-neutral: #fbf8ef; /* Soft Cream */
+	--color-neutral-content: #333333;
+
+	--color-info: #b4ebe6; /* Light Aqua */
+	--color-info-content: #333333;
+
+	--color-success: #80cbc4; /* Teal */
+	--color-success-content: #ffffff;
+
+	--color-warning: #ffb433; /* Warm Orange */
+	--color-warning-content: #333333;
+
+	--color-error: #ffb433; /* Warm Orange */
+	--color-error-content: #333333;
+
+	/* Border Radius */
+	--radius-selector: 1rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.5rem;
+
+	/* Base Sizes */
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+
+	/* Border Size */
+	--border: 1px;
+
+	/* Effects */
+	--depth: 1;
+	--noise: 0;
+}
+
+.shadow-bold {
+	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Lebih gelap & tebal */
 }

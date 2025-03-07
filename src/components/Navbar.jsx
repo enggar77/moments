@@ -11,6 +11,7 @@ import { Link } from 'react-router';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import SearchBar from './SearchBar';
+import { Ticket } from 'lucide-react';
 
 export default function Navbar() {
 	const { user, isLoaded } = useUser();
@@ -23,11 +24,16 @@ export default function Navbar() {
 	);
 
 	const navbarLayout = (children) => (
-		<div className="flex flex-col p-3 gap-4 md:px-10 border-b border-base-content/10 sticky inset-0 bg-base-200 z-10">
+		<div className="w-screen px-8 md:px-24 flex flex-col p-3 gap-4 border-b border-base-content/10 sticky inset-0 bg-primary z-10">
 			<div className="flex justify-between items-center">
-				<Link to="/">
-					<h1 className="font-semibold text-xl">MOMENTS</h1>
-				</Link>
+				<div className="flex gap-4 items-center">
+					<Ticket className="text-accent shadow-bold" size={30} />
+					<Link to="/">
+						<h1 className="font-semibold text-3xl  text-accent shadow-bold">
+							MOMENTS
+						</h1>
+					</Link>
+				</div>
 
 				<div className="flex items-center gap-10">
 					{/* <div className="hidden lg:block">
@@ -78,7 +84,9 @@ export default function Navbar() {
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
 					<Link to="/sell">
-						<Button className={'btn-sm'}>Sell Tickets</Button>
+						<Button className={'btn-sm btn-accent'}>
+							Sell Tickets
+						</Button>
 					</Link>
 				)}
 				{/* Regular User */}

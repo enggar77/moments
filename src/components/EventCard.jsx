@@ -97,7 +97,7 @@ export default function EventCard({ eventId }) {
 							e.stopPropagation();
 							navigate(`/seller/events/${eventId}/edit`);
 						}}
-						className="w-full bg-gray-100 text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200 shadow-sm flex items-center justify-center gap-2"
+						className="w-full bg-primary text-gray-700 px-6 py-3 rounded-lg font-medium hover:bg-secondary transition-colors duration-200 shadow-sm flex items-center justify-center gap-2"
 					>
 						<PencilIcon className="w-5 h-5" />
 						Edit Event
@@ -173,7 +173,7 @@ export default function EventCard({ eventId }) {
 					<div>
 						<div className="flex flex-col items-start gap-2">
 							{isEventOwner && (
-								<span className="inline-flex items-center gap-1 bg-blue-600/90 text-white px-2 py-1 rounded-full text-xs font-medium">
+								<span className="inline-flex items-center gap-1 bg-accent text-white px-2 py-1 rounded-full text-xs font-medium">
 									<StarIcon className="w-3 h-3" />
 									Your Event
 								</span>

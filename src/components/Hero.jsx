@@ -7,7 +7,7 @@ export default function Hero() {
 			className="hero h-[70vh] w-screen absolute left-0"
 			style={{
 				backgroundImage:
-					'url(https://www.moshville.co.uk/wordpress/wp-content/uploads/2024/02/Taylor-Swift-header.jpg)',
+					'url(https://glossmagazine.net/wp-content/uploads/2023/08/taylor1-scaled.jpeg)',
 				backgroundPosition: 'top',
 				backgroundSize: 'cover',
 			}}
@@ -32,7 +32,7 @@ export default function Hero() {
 							<p>Jakarta, Indonesia</p>
 						</div>
 					</div>
-					<Button className="bg-white text-black !text-xl p-6 border border-gray-300 hover:bg-gray-200 my-6">
+					<Button className="mt-5 bg-accent btn-xl text-[#000272] border-2 border-[#FF6F3C] px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:bg-[#FF6F3C] hover:text-white hover:border-[#FFB433] hover:shadow-lg">
 						Get Tickets
 					</Button>
 				</div>
