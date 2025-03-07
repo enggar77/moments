@@ -17,6 +17,7 @@ export default function AdminUserManagement() {
 	const [selectedUser, setSelectedUser] = useState(null);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [roleFilter, setRoleFilter] = useState('all');
+	const [sortBy, setSortBy] = useState('name');
 
 	if (!usersData) {
 		return <Loading />;
@@ -30,9 +31,6 @@ export default function AdminUserManagement() {
 	}
 	// const [users, setUsers] = useState(usersData);
 	// const [currentPage, setCurrentPage] = useState(1);
-	// const [searchTerm, setSearchTerm] = useState('');
-	// const [statusFilter, setStatusFilter] = useState('All');
-	// const [sortBy, setSortBy] = useState('Latest');
 
 	// const toggleStatus = (id) => {
 	// 	setUsers(
@@ -55,12 +53,12 @@ export default function AdminUserManagement() {
 				user.email.toLowerCase().includes(searchTerm.toLowerCase()))
 	);
 
-	// const sortedUsers = [...filteredUsers].sort((a, b) => {
-	// 	if (sortBy === 'Latest') return new Date(b.date) - new Date(a.date);
-	// 	if (sortBy === 'Name') return a.name.localeCompare(b.name);
-	// 	if (sortBy === 'Purchases') return b.purchases - a.purchases;
-	// 	return 0;
-	// });
+	const sortedUsers = [...filteredUsers].sort((a, b) => {
+		if (sortBy === 'name') return a.name.localeCompare(b.name);
+		if (sortBy === 'email') return a.email.localeCompare(b.email);
+		if (sortBy === 'role') return a.role.localeCompare(b.role);
+		return 0;
+	});
 
 	// const totalPages = Math.ceil(sortedUsers.length / ITEMS_PER_PAGE);
 	// const currentData = sortedUsers.slice(
@@ -88,15 +86,15 @@ export default function AdminUserManagement() {
 							<option value="admin">Admin</option>
 						</select>
 
-						{/* <select
+						<select
 							className="select select-bordered text-sm"
 							value={sortBy}
 							onChange={(e) => setSortBy(e.target.value)}
 						>
-							<option>Latest</option>
-							<option>Name</option>
-							<option>Purchases</option>
-						</select> */}
+							<option value="name">Name</option>
+							<option value="email">Email</option>
+							<option value="role">Role</option>
+						</select>
 					</div>
 				</div>
 
@@ -111,7 +109,7 @@ export default function AdminUserManagement() {
 							</tr>
 						</thead>
 						<tbody>
-							{filteredUsers.map((user) => (
+							{sortedUsers.map((user) => (
 								<tr key={user._id}>
 									<td className="flex items-center gap-3 p-3">
 										<img
