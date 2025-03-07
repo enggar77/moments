@@ -73,7 +73,7 @@ export default function Navbar() {
 
 	// User is fully loaded with role
 	return navbarLayout(
-		<div className="flex items-center gap-5">
+		<div className="flex items-center gap-5 z-50">
 			<div className="text-sm font-medium">
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
