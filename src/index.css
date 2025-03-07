@@ -1,57 +1,53 @@
 @import 'tailwindcss';
 @plugin "daisyui";
 @plugin "daisyui/theme" {
-	name: 'summerVibes'; /* Custom Theme Name */
-	default: true;
-	prefersdark: false;
-	color-scheme: light;
+	name: 'summerPastel';
+	default: true; /* set as default */
+	prefersdark: false; /* set as default dark mode (prefers-color-scheme:dark) */
+	color-scheme: light; /* color of browser-provided UI */
 
-	--color-base-100: #fbf8ef; /* Soft Cream */
-	--color-base-200: #b4ebe6; /* Light Aqua */
-	--color-base-300: #80cbc4; /* Teal */
-	--color-base-content: #333333; /* Dark Gray for text */
+	--color-base-100: #b7e0ff; /* Light Sky Blue */
+	--color-base-200: #fff5cd; /* Pastel Yellow */
+	--color-base-300: #ffcfb3; /* Peach Pink */
+	--color-base-content: black;
 
-	--color-primary: #80cbc4; /* Teal */
-	--color-primary-content: #ffffff; /* White for contrast */
+	--color-primary: #b7e0ff; /* Light Sky Blue */
+	--color-primary-content: #e78f81; /* Soft Coral */
 
-	--color-secondary: #b4ebe6; /* Light Aqua */
-	--color-secondary-content: #333333;
+	--color-secondary: #fff5cd; /* Pastel Yellow */
+	--color-secondary-content: #e78f81; /* Soft Coral */
 
-	--color-accent: #ffb433; /* Warm Orange */
-	--color-accent-content: #333333;
+	--color-accent: #ffcfb3; /* Peach Pink */
+	--color-accent-content: #b7e0ff; /* Light Sky Blue */
 
-	--color-neutral: #fbf8ef; /* Soft Cream */
-	--color-neutral-content: #333333;
+	--color-neutral: #e78f81; /* Soft Coral */
+	--color-neutral-content: #fff5cd; /* Pastel Yellow */
 
-	--color-info: #b4ebe6; /* Light Aqua */
-	--color-info-content: #333333;
+	--color-info: #b7e0ff; /* Light Sky Blue */
+	--color-info-content: #e78f81; /* Soft Coral */
 
-	--color-success: #80cbc4; /* Teal */
-	--color-success-content: #ffffff;
+	--color-success: #ffcfb3; /* Peach Pink */
+	--color-success-content: #fff5cd; /* Pastel Yellow */
 
-	--color-warning: #ffb433; /* Warm Orange */
-	--color-warning-content: #333333;
+	--color-warning: #fff5cd; /* Pastel Yellow */
+	--color-warning-content: #e78f81; /* Soft Coral */
 
-	--color-error: #ffb433; /* Warm Orange */
-	--color-error-content: #333333;
+	--color-error: #e78f81; /* Soft Coral */
+	--color-error-content: #fff5cd; /* Pastel Yellow */
 
-	/* Border Radius */
+	/* border radius */
 	--radius-selector: 1rem;
 	--radius-field: 0.25rem;
 	--radius-box: 0.5rem;
 
-	/* Base Sizes */
+	/* base sizes */
 	--size-selector: 0.25rem;
 	--size-field: 0.25rem;
 
-	/* Border Size */
+	/* border size */
 	--border: 1px;
 
-	/* Effects */
+	/* effects */
 	--depth: 1;
 	--noise: 0;
-}
-
-.shadow-bold {
-	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Lebih gelap & tebal */
 }

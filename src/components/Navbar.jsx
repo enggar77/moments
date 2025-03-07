@@ -27,9 +27,9 @@ export default function Navbar() {
 		<div className="w-screen px-8 md:px-24 flex flex-col p-3 gap-4 border-b border-base-content/10 sticky inset-0 bg-primary z-10">
 			<div className="flex justify-between items-center">
 				<div className="flex gap-4 items-center">
-					<Ticket className="text-accent shadow-bold" size={30} />
+					<Ticket size={30} />
 					<Link to="/">
-						<h1 className="font-semibold text-3xl  text-accent shadow-bold">
+						<h1 className="font-semibold text-3xl">
 							MOMENTS
 						</h1>
 					</Link>
@@ -84,7 +84,7 @@ export default function Navbar() {
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
 					<Link to="/sell">
-						<Button className={'btn-sm btn-accent'}>
+						<Button className={'btn-sm btn-accent text-black border border-black'}>
 							Sell Tickets
 						</Button>
 					</Link>
@@ -92,13 +92,13 @@ export default function Navbar() {
 				{/* Regular User */}
 				{userRole.role === 'user' && (
 					<Link to={`ticket/${user.id}`}>
-						<Button className={'btn-sm'}>My Tickets</Button>
+						<Button className={'btn-sm btn-accent text-black border border-black'}>My Tickets</Button>
 					</Link>
 				)}
 				{/* Admin */}
 				{userRole.role === 'admin' && (
 					<Link to={`/dashboard`}>
-						<Button className={'btn-sm'}>Dashboard</Button>
+						<Button className={'btn-sm btn-accent text-black border border-black'}>Dashboard</Button>
 					</Link>
 				)}
 			</div>

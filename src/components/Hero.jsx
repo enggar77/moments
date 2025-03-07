@@ -7,12 +7,11 @@ export default function Hero() {
 			className="hero h-[70vh] w-screen absolute left-0"
 			style={{
 				backgroundImage:
-					'url(https://glossmagazine.net/wp-content/uploads/2023/08/taylor1-scaled.jpeg)',
+					'url(https://i.pinimg.com/1200x/bb/05/2d/bb052d2037e39e3b2c7905e86b8e2466.jpg)',
 				backgroundPosition: 'top',
 				backgroundSize: 'cover',
 			}}
 		>
-			<div className="hero-overlay"></div>
 			<div className="hero-content text-neutral-content flex w-full justify-start">
 				<div className="w-full">
 					<h1 className="mb-5 text-5xl font-medium">
@@ -32,7 +31,7 @@ export default function Hero() {
 							<p>Jakarta, Indonesia</p>
 						</div>
 					</div>
-					<Button className="mt-5 bg-accent btn-xl text-[#000272] border-2 border-[#FF6F3C] px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:bg-[#FF6F3C] hover:text-white hover:border-[#FFB433] hover:shadow-lg">
+					<Button className="mt-5 bg-accent btn-xl text-black border-2 border-black px-6 py-3 rounded-lg font-bold transition-all duration-300 hover:bg-neutral hover:text-white hover:border-white hover:shadow-lg">
 						Get Tickets
 					</Button>
 				</div>

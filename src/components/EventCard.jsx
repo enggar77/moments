@@ -173,7 +173,7 @@ export default function EventCard({ eventId }) {
 					<div>
 						<div className="flex flex-col items-start gap-2">
 							{isEventOwner && (
-								<span className="inline-flex items-center gap-1 bg-accent text-white px-2 py-1 rounded-full text-xs font-medium">
+								<span className="inline-flex items-center gap-1 bg-blue-600/90 text-white px-2 py-1 rounded-full text-xs font-medium">
 									<StarIcon className="w-3 h-3" />
 									Your Event
 								</span>
