@@ -13,6 +13,8 @@ function EventManagement() {
   const [searchTerm, setSearchTerm] = useState("");
   
   const events = useQuery(api.events.get);
+  // const deleteEvent = useQuery(api.events.delete);
+
 
   if (!events) {
     return <Loading />;
@@ -25,30 +27,41 @@ function EventManagement() {
   const totalPages = Math.ceil(filteredEvents.length / ITEMS_PER_PAGE);
   const currentData = filteredEvents.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
 
-  const showSwal = () => {
-    withReactContent(Swal).fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then(result => {
-      if (result.isConfirmed) {
-        withReactContent(Swal).fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      }
-    });
-  };
+  // const handleDelete = async (eventId) => {
+  //   const result = await withReactContent(Swal).fire({
+  //     title: "Are you sure?",
+  //     text: "This event will be deleted permanently!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   });
+
+  //   if (result.isConfirmed) {
+  //     try {
+  //       await deleteEvent({ id: eventId });
+  //       withReactContent(Swal).fire({
+  //         title: "Deleted!",
+  //         text: "The event has been deleted.",
+  //         icon: "success",
+  //       });
+  //     } catch (error) {
+  //       console.error("Error deleting event:", error);
+  //       withReactContent(Swal).fire({
+  //         title: "Error!",
+  //         text: "Failed to delete the event.",
+  //         icon: "error",
+  //       });
+  //     }
+  //   }
+  // };
 
   return (
     <div className="p-6 w-full max-w-full">
       <div className="bg-white p-6 rounded-lg shadow-md">
-        <div className="flex flex-wrap justify-end items-center mb-4 lg:flex-3/4-col">
+        <div className="flex flex-wrap justify-between items-center mb-4 lg:flex-3/4-col">
+          <h1 className="font-bold text-2xl">Concerts Management</h1>
           <input
             type="text"
             placeholder="Search events..."
@@ -87,9 +100,9 @@ function EventManagement() {
                       </span>
                     </td>
                     <td>
-                      <button className="btn btn-sm btn-ghost" onClick={showSwal}>
+                      {/* <button className="btn btn-sm btn-ghost" onClick={() => handleDelete(event._id)}>
                         <Trash />
-                      </button>
+                      </button> */}
                     </td>
                   </tr>
                 );
