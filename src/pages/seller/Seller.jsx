@@ -1,9 +1,9 @@
 import { useUser } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useNavigate } from 'react-router';
-import SellerDashboard from '../components/feature/SellerDashboard';
-import Loading from '../components/Loading';
+import SellerDashboard from '../../components/feature/SellerDashboard';
+import Loading from '../../components/Loading';
 
 export default function Seller() {
 	const { user } = useUser();

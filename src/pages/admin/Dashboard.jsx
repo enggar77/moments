@@ -1,8 +1,8 @@
 import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useUser } from '@clerk/clerk-react';
 import { Link, useNavigate, Outlet } from 'react-router';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../../components/Sidebar';
 import { useEffect, useState } from 'react';
 
 export default function Dashboard() {

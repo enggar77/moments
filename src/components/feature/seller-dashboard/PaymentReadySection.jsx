@@ -17,14 +17,14 @@ export default function PaymentReadySection() {
 				<div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
 					<div className="flex justify-center gap-4">
 						<button
-							onClick={() => navigate('/create-event')}
+							onClick={() => navigate('/seller/create-event')}
 							className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
 						>
 							<Plus className="w-5 h-5" />
 							Create Event
 						</button>
 						<button
-							onClick={() => navigate('/my-events')}
+							onClick={() => navigate('/seller/my-events')}
 							className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
 						>
 							<CalendarDays className="w-5 h-5" />

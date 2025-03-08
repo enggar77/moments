@@ -29,7 +29,7 @@ export default function EventList() {
 						Discover & book tickets for amazing events
 					</p>
 				</div>
-				<div className=" px-4 py-2 rounded-lg shadow-sm border bg-info">
+				<div className=" px-4 py-2 rounded-lg shadow-sm border bg-base-300">
 					<div className="flex items-center gap-2 ">
 						<CalendarDays className="w-5 h-5" />
 						<span className="font-medium">
