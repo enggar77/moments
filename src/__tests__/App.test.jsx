@@ -113,21 +113,21 @@ describe('App Routing', () => {
 		renderWithRouter('/sell');
 		expect(screen.getByText(/Add New Event/i)).toBeInTheDocument();
 	});
+});
 
-	describe('Dashboard Routing', () => {
-		beforeEach(() => {
-			renderWithRouter('/dashboard');
-		});
+describe('Dashboard Routing', () => {
+	beforeEach(() => {
+		renderWithRouter('/dashboard');
+	});
 
-		it('renders the Dashboard layout', () => {
-			expect(screen.getByText(/Admin Dashboard/i)).toBeInTheDocument();
-		});
+	it('renders the Dashboard layout', () => {
+		expect(screen.getByText(/Admin Dashboard/i)).toBeInTheDocument();
+	});
 
-		it('renders Overview by default', () => {
-			expect(
-				screen.getByRole('heading', { name: /Overview/i })
-			).toBeInTheDocument();
-		});
+	it('renders Overview by default', () => {
+		expect(
+			screen.getByRole('heading', { name: /Overview/i })
+		).toBeInTheDocument();
 	});
 });
 
