@@ -238,7 +238,7 @@ export default function FormEvent() {
 				</div>
 				<div className="flex">
 					<div className="flex ml-auto gap-3">
-						<Link to="/dashboard/events">
+						<Link to="/">
 							<Button
 								type="button"
 								className="bg-white text-black border-gray-300"
