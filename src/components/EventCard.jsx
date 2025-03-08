@@ -16,6 +16,9 @@ import {
 } from 'lucide-react';
 import PurchaseTicket from '../components/PurchaseTicket';
 
+const defaultImg =
+	'https://thumbs.dreamstime.com/b/rock-concert-large-group-happy-people-enjoying-clapping-raised-up-hands-blue-lights-stage-new-year-celebration-46521228.jpg';
+
 export default function EventCard({ eventId }) {
 	const { user } = useUser();
 	const navigate = useNavigate();
@@ -29,7 +32,7 @@ export default function EventCard({ eventId }) {
 		eventId,
 		userId: user?.id ?? '',
 	});
-	const imageUrl = useStorageUrl(event?.imageStorageId);
+	const imageUrl = useStorageUrl(event?.imageStorageId) || defaultImg;
 
 	if (!event || !availability) {
 		return null;
