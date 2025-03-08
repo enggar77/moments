@@ -2,30 +2,30 @@ import { Ticket } from 'lucide-react';
 
 export default function Footer() {
 	return (
-		<footer className='mt-auto absolute bottom-0 left-0 w-full footer sm:footer-horizontal bg-white text-base-content p-10 px-20 flex flex-col'>
+		<footer className=' w-full footer sm:footer-horizontal bg-[#F9F9FF] p-10 px-20 flex flex-col z-10 shadow-md text-[#7777A1]'>
 			<div className='footer sm:footer-horizontal p-10  border-b border-gray-300'>
 				<aside>
 					<div className='flex gap-3 items-center'>
-						<Ticket size={32} />
-						<p className='text-2xl font-medium'>MOMENTS</p>
+						<Ticket size={32} className='text-black' />
+						<p className='text-2xl font-medium text-black'>MOMENTS</p>
 					</div>
 					<p>Your premier destination for concert tickets</p>
 				</aside>
 				<nav>
-					<h6 className='footer-title normal-case'>Quick Links</h6>
+					<h6 className='footer-title normal-case text-black'>Quick Links</h6>
 					<a className='link link-hover'>About us</a>
 					<a className='link link-hover'>Contact</a>
 					<a className='link link-hover'>FAQ</a>
 				</nav>
 				<nav>
-					<h6 className='footer-title normal-case'>Legal</h6>
+					<h6 className='footer-title normal-case text-black'>Legal</h6>
 					<a className='link link-hover'>Terms of use</a>
 					<a className='link link-hover'>Privacy policy</a>
 					<a className='link link-hover'>Refund policy</a>
 				</nav>
 				<nav>
-					<h6 className='footer-title normal-case'>Follow Us</h6>
-					<div className='grid grid-flow-col gap-4'>
+					<h6 className='footer-title normal-case text-black'>Follow Us</h6>
+					<div className='grid grid-flow-col gap-4 text-black'>
 						<a>
 							<svg
 								xmlns='http://www.w3.org/2000/svg'
@@ -82,7 +82,7 @@ export default function Footer() {
 					</div>
 				</nav>
 			</div>
-			<p className='self-center'>
+			<p className='self-center text-black'>
 				© {new Date().getFullYear()} MOMENTS. All rights reserved.
 			</p>
 		</footer>
