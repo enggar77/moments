@@ -3,7 +3,10 @@ import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
 
-export default function SearchBar({ setSearchTerm }) {
+export default function SearchBar({
+	setSearchTerm,
+	placeholder = 'Search for events...',
+}) {
 	const [inputValue, setInputValue] = useState('');
 	const debouncedValue = useDebounce(inputValue, 500);
 
@@ -15,7 +18,7 @@ export default function SearchBar({ setSearchTerm }) {
 		<Form action="/search" className="relative w-full md:w-auto">
 			<input
 				type="text"
-				placeholder="Search for events..."
+				placeholder={placeholder}
 				className="input w-full lg:w-96 pl-10 input-md"
 				name="q"
 				value={inputValue}
