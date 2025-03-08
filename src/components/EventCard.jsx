@@ -16,6 +16,9 @@ import {
 } from 'lucide-react';
 import PurchaseTicket from '../components/PurchaseTicket';
 
+const defaultImageUrl =
+	'https://thumbs.dreamstime.com/b/rock-concert-large-group-happy-people-enjoying-clapping-raised-up-hands-blue-lights-stage-new-year-celebration-46521228.jpg';
+
 export default function EventCard({ eventId }) {
 	const { user } = useUser();
 	const navigate = useNavigate();
@@ -29,7 +32,7 @@ export default function EventCard({ eventId }) {
 		eventId,
 		userId: user?.id ?? '',
 	});
-	const imageUrl = useStorageUrl(event?.imageStorageId);
+	const imageUrl = useStorageUrl(event?.imageStorageId) || defaultImageUrl;
 
 	if (!event || !availability) {
 		return null;
@@ -157,12 +160,10 @@ export default function EventCard({ eventId }) {
 			{/* Event Image */}
 			{imageUrl && (
 				<div className="relative w-full h-48">
-					<Image
+					<img
 						src={imageUrl}
 						alt={event.name}
-						fill
-						className="object-cover"
-						priority
+						className="w-full h-full object-cover"
 					/>
 					<div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
 				</div>
