@@ -3,11 +3,11 @@ import { useUser } from '@clerk/clerk-react';
 import { api } from '../../../convex/_generated/api';
 import { useQuery } from 'convex/react';
 import ReleaseTicket from './ReleaseTicket';
-import { useNavigate, useLocation } from 'react-router';
+import { useLocation } from 'react-router';
 import Button from '../Button';
+import { createStripeCheckoutSession } from '../../libs/createStripeCheckoutSession';
 
 export default function PurchaseTicket({ eventId }) {
-	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const { user } = useUser();
 	const queuePosition = useQuery(api.waitingList.getQueuePosition, {
@@ -51,20 +51,21 @@ export default function PurchaseTicket({ eventId }) {
 	}, [offerExpiresAt, isExpired]);
 
 	const handlePurchase = async () => {
-		// if (!user) return;
-		// try {
-		//   setIsLoading(true);
-		//   const { sessionUrl } = await createStripeCheckoutSession({
-		//     eventId,
-		//   });
-		//   if (sessionUrl) {
-		//     router.push(sessionUrl);
-		//   }
-		// } catch (error) {
-		//   console.error("Error creating checkout session:", error);
-		// } finally {
-		//   setIsLoading(false);
-		// }
+		if (!user) return;
+		try {
+			setIsLoading(true);
+			const { sessionUrl } = await createStripeCheckoutSession({
+				eventId,
+				userId: user.id,
+			});
+			if (sessionUrl) {
+				window.location.href = sessionUrl;
+			}
+		} catch (error) {
+			console.error('Error creating checkout session:', error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	if (!user || !queuePosition || queuePosition.status !== 'offered') {

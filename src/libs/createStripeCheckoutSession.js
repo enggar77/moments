@@ -1,11 +1,13 @@
 import { stripe } from './stripe';
 import { getConvexClient } from './convex';
 import { api } from '../../convex/_generated/api';
-import baseUrl from './baseUrl';
+import getBaseUrl from './baseUrl';
 import { DURATIONS } from '../../convex/constants';
 
 export async function createStripeCheckoutSession({ eventId, userId }) {
 	const convex = getConvexClient();
+	// Get the base URL by calling the function
+	const baseUrl = getBaseUrl();
 
 	// Get event details
 	const event = await convex.query(api.events.getById, { eventId });
