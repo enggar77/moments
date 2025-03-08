@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 import { CalendarDays, Plus } from 'lucide-react';
+import Button from '../../Button';
 
 export default function PaymentReadySection() {
 	const navigate = useNavigate();
@@ -16,20 +17,20 @@ export default function PaymentReadySection() {
 				</p>
 				<div className="bg-white rounded-xl shadow-sm border border-gray-200 p-4">
 					<div className="flex justify-center gap-4">
-						<button
+						<Button
 							onClick={() => navigate('/seller/create-event')}
-							className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+							className={'btn-primary'}
 						>
 							<Plus className="w-5 h-5" />
 							Create Event
-						</button>
-						<button
+						</Button>
+						<Button
 							onClick={() => navigate('/seller/my-events')}
-							className="flex items-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
+							className={'btn-soft'}
 						>
 							<CalendarDays className="w-5 h-5" />
 							View My Events
-						</button>
+						</Button>
 					</div>
 				</div>
 			</div>

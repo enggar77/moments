@@ -37,7 +37,7 @@ export default function EventCard({ eventId }) {
 				isPastEvent ? 'opacity-75 hover:opacity-100' : ''
 			}`}
 		>
-			<EventImage imageUrl={imageUrl} eventName={event.name} />
+			{/* <EventImage imageUrl={imageUrl} eventName={event.name} /> */}
 
 			<div className={`p-6 ${imageUrl ? 'relative' : ''}`}>
 				<EventHeader

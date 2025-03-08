@@ -46,7 +46,7 @@ export default function EventPage() {
 							<img
 								src={imageUrl}
 								alt={event.name}
-								className="object-cover"
+								className="object-cover w-full h-full"
 							/>
 						</div>
 					)}
@@ -110,7 +110,7 @@ export default function EventPage() {
 
 							{/* Right Column - Ticket Purchase Card */}
 							<div>
-								<div className="sticky top-8 space-y-4">
+								<div className="top-8 space-y-4">
 									<EventCard eventId={params.id} />
 
 									{user ? (
@@ -120,7 +120,7 @@ export default function EventPage() {
 										/>
 									) : (
 										<SignInButton>
-											<Button className="w-full btn-warning">
+											<Button className="w-full btn-warning btn-lg">
 												Sign in to buy tickets
 											</Button>
 										</SignInButton>

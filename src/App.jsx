@@ -3,16 +3,14 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Dashboard from './pages/admin/Dashboard';
 import Error from './components/Error';
-// import MyTickets from './pages/MyTickets';
-// import AddEvent from './pages/AddEvent';
-// import EditEvent from './pages/EditEvent';
 import EventDetails from './pages/EventDetails';
 import TransactionManagement from './pages/admin/TransactionManagement';
 import Overview from './pages/admin/Overview';
 import EventManagement from './pages/admin/EventManagement';
 import UserManagement from './pages/admin/UserManagement';
 import Seller from './pages/seller/Seller';
-import EventForm from './pages/seller/EventForm';
+import EventForm from './components/feature/create-event/EventForm';
+import EditEvent from './components/feature/create-event/EditEvent';
 import SellerEvents from './pages/seller/SellerEvents';
 
 const router = createBrowserRouter([
@@ -50,8 +48,8 @@ const router = createBrowserRouter([
 				element: <SellerEvents />,
 			},
 			{
-				path: '/seller/events/:eventId/edit',
-				element: <div>edit</div>,
+				path: '/seller/events/:id/edit',
+				element: <EditEvent />,
 			},
 			{
 				path: '/event/:id',
