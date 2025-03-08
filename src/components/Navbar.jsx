@@ -11,10 +11,12 @@ import { Link } from 'react-router';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import SearchBar from './SearchBar';
+import { useLocation } from 'react-router';
 
 export default function Navbar() {
 	const { user, isLoaded } = useUser();
 	const { openSignIn } = useClerk();
+	const { pathname } = useLocation();
 
 	// Only run the query if user exists and is loaded
 	const userRole = useQuery(
@@ -23,7 +25,7 @@ export default function Navbar() {
 	);
 
 	const navbarLayout = (children) => (
-		<div className="flex flex-col p-3 gap-4 md:px-10 border-b border-base-content/10 sticky inset-0 bg-base-200 z-10">
+		<div className="flex flex-col p-3 gap-4 md:px-10 border-b border-base-content/10 sticky inset-0 bg-white z-10">
 			<div className="flex justify-between items-center">
 				<Link to="/">
 					<h1 className="font-semibold text-xl">MOMENTS</h1>
@@ -73,7 +75,7 @@ export default function Navbar() {
 
 	// User is fully loaded with role
 	return navbarLayout(
-		<div className="flex items-center gap-5">
+		<div className="flex items-center gap-5 z-50">
 			<div className="text-sm font-medium">
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
@@ -90,7 +92,7 @@ export default function Navbar() {
 				{/* Admin */}
 				{userRole.role === 'admin' && (
 					<Link to={`/dashboard`}>
-						<Button className={'btn-sm'}>Dashboard</Button>
+						<Button className={`btn-sm border-none bg-white hover:font-bold`}>Dashboard</Button>
 					</Link>
 				)}
 			</div>
