@@ -38,8 +38,9 @@ export default function EventHeader({
 				>
 					${event.price.toFixed(2)}
 				</span>
+
 				{availability.purchasedCount >= availability.totalTickets && (
-					<span className="px-3 py-1 bg-red-50 text-red-700 font-semibold rounded-full text-sm">
+					<span className=" text-red-700 px-3 py-1 bg-red-50 rounded-full font-semibold text-sm whitespace-nowrap">
 						Sold Out
 					</span>
 				)}

@@ -1,6 +1,5 @@
 import { useNavigate, useRouteError } from 'react-router';
 import Button from './Button';
-import { ArrowLeft } from 'lucide-react';
 
 export default function Error() {
 	const navigate = useNavigate();
@@ -14,12 +13,8 @@ export default function Error() {
 				</h1>
 				<p>{error.data || error.message}</p>
 
-				<Button
-					className={'btn-primary'}
-					onClick={() => navigate(-1)}
-					icon={<ArrowLeft className="w-5" />}
-				>
-					Go back
+				<Button className={'btn-primary'} onClick={() => navigate('/')}>
+					Go to Homepage
 				</Button>
 			</div>
 		</div>

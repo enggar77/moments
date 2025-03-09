@@ -9,7 +9,7 @@ export const get = query({
 	handler: async (ctx) => {
 		return await ctx.db
 			.query('events')
-			// .filter((q) => q.eq(q.field('is_cancelled'), undefined))
+			.filter((q) => q.eq(q.field('is_cancelled'), undefined))
 			.collect();
 	},
 });

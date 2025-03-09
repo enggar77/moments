@@ -12,6 +12,9 @@ import Seller from './pages/seller/Seller';
 import EventForm from './components/feature/create-event/EventForm';
 import EditEvent from './components/feature/create-event/EditEvent';
 import SellerEvents from './pages/seller/SellerEvents';
+import PurchaseSuccess from './pages/user/PurchaseSuccess';
+import MyTickets from './pages/user/MyTickets';
+import TicketPage from './pages/user/TicketPage';
 
 const router = createBrowserRouter([
 	{
@@ -24,8 +27,16 @@ const router = createBrowserRouter([
 				element: <Home />,
 			},
 			{
+				path: '/tickets/:id',
+				element: <MyTickets />,
+			},
+			{
 				path: '/ticket/:id',
-				element: <div>my tickets</div>,
+				element: <TicketPage />,
+			},
+			{
+				path: 'ticket/purchase-success',
+				element: <PurchaseSuccess />,
 			},
 			{
 				path: '/seller',

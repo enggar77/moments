@@ -93,7 +93,7 @@ export default function Navbar() {
 				)}
 				{/* Regular User */}
 				{userRole.role === 'user' && (
-					<Link to={`ticket/${user.id}`}>
+					<Link to={`tickets/${user.id}`}>
 						<Button className={'btn-sm btn-primary'}>
 							My Tickets
 						</Button>
