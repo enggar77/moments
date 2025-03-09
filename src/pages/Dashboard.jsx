@@ -16,7 +16,7 @@ export default function Dashboard() {
 	// 	isLoaded && user?.id ? { userId: user.id } : 'skip'
 	// );
 
-	// if (userRole.role !== 'admin') navigate('/');
+	// if (userRole?.role !== 'admin') navigate('/');
 
 	useEffect(() => {
 		document.body.style.overflow = isSidebarOpen ? 'hidden' : 'auto';
