@@ -51,20 +51,20 @@ export default function PurchaseTicket({ eventId }) {
 	}, [offerExpiresAt, isExpired]);
 
 	const handlePurchase = async () => {
-		// if (!user) return;
-		// try {
-		//   setIsLoading(true);
-		//   const { sessionUrl } = await createStripeCheckoutSession({
-		//     eventId,
-		//   });
-		//   if (sessionUrl) {
-		//     router.push(sessionUrl);
-		//   }
-		// } catch (error) {
-		//   console.error("Error creating checkout session:", error);
-		// } finally {
-		//   setIsLoading(false);
-		// }
+		if (!user) return;
+		try {
+			setIsLoading(true);
+			const { sessionUrl } = await createStripeCheckoutSession({
+				eventId,
+			});
+			if (sessionUrl) {
+				router.push(sessionUrl);
+			}
+		} catch (error) {
+			console.error('Error creating checkout session:', error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	if (!user || !queuePosition || queuePosition.status !== 'offered') {

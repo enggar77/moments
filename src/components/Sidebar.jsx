@@ -16,16 +16,16 @@ export default function Sidebar({ isOpen, onClose }) {
 			<div
 				className={`fixed md:top-auto md:relative left-0 w-64 min-h-full bg-[#222222] shadow-lg p-4 flex flex-col gap-4 transform transition-transform duration-300 ease-in-out z-3 text-white ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
 			>
-				<div className='flex justify-around items-center'>
-				    <h2 className="text-lg font-semibold text-white">
-				    	Admin Dashboard
-				    </h2>
-				    <button
-				    	className="md:hidden self-end p-2 rounded"
-				    	onClick={onClose}
-				    >
-				    	<X className="w-6 h-6" />
-				    </button>
+				<div className="flex justify-around items-center">
+					<h2 className="text-lg font-semibold text-white">
+						Admin Dashboard
+					</h2>
+					<button
+						className="md:hidden self-end p-2 rounded"
+						onClick={onClose}
+					>
+						<X className="w-6 h-6" />
+					</button>
 				</div>
 				<nav className="flex flex-col gap-2">
 					<Link
