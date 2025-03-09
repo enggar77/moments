@@ -46,6 +46,8 @@ describe('UserManagement', () => {
 		vi.resetAllMocks();
 	});
 
+	// TO DO: add test loading state
+
 	it('renders the table with user data', () => {
 		// Mock useQuery to return user data after the loading state
 		render(<UserManagement />);

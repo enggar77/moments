@@ -99,3 +99,83 @@ export const mockUsers = [
 		avatar: null,
 	},
 ];
+
+export const mockEvents = [
+	{
+		_id: '1',
+		name: 'Summer Festival',
+		eventDate: new Date('2025-06-15').toISOString(),
+		location: 'Central Park',
+		price: '$50',
+	},
+	{
+		_id: '2',
+		name: 'Rock Concert',
+		eventDate: new Date('2025-04-20').toISOString(),
+		location: 'Madison Square Garden',
+		price: '$75',
+	},
+	{
+		_id: '3',
+		name: 'Jazz Night',
+		eventDate: new Date('2025-02-10').toISOString(), // past event
+		location: 'Blue Note',
+		price: '$40',
+	},
+	{
+		_id: '4',
+		name: 'Classical Symphony',
+		eventDate: new Date('2025-05-30').toISOString(),
+		location: 'Carnegie Hall',
+		price: '$100',
+	},
+	{
+		_id: '5',
+		name: 'Electronic Music Festival',
+		eventDate: new Date('2025-07-25').toISOString(),
+		location: 'Barclays Center',
+		price: '$120',
+	},
+	{
+		_id: '6',
+		name: 'Country Music Jam',
+		eventDate: new Date('2025-08-15').toISOString(),
+		location: 'Nashville Arena',
+		price: '$65',
+	},
+	{
+		_id: '7',
+		name: 'Indie Band Showcase',
+		eventDate: new Date('2025-03-01').toISOString(), // past event
+		location: 'Mercury Lounge',
+		price: '$25',
+	},
+	{
+		_id: '8',
+		name: 'Hip Hop Concert',
+		eventDate: new Date('2025-09-10').toISOString(),
+		location: 'Barclays Center',
+		price: '$90',
+	},
+	{
+		_id: '9',
+		name: 'Music Festival',
+		eventDate: new Date('2025-06-30').toISOString(),
+		location: "Randall's Island",
+		price: '$150',
+	},
+	{
+		_id: '10',
+		name: 'Pop Star Tour',
+		eventDate: new Date('2025-10-05').toISOString(),
+		location: 'Madison Square Garden',
+		price: '$200',
+	},
+	{
+		_id: '11',
+		name: 'Latin Music Night',
+		eventDate: new Date('2025-11-15').toISOString(),
+		location: 'Beacon Theatre',
+		price: '$70',
+	},
+];

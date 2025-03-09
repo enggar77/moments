@@ -1,7 +1,6 @@
 import { Pencil, Trash } from 'lucide-react';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 import { useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import Loading from '../../components/Loading';
