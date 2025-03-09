@@ -23,7 +23,7 @@ export default function Dashboard() {
 	}, [isSidebarOpen]);
 
 	return (
-		<div className="flex h-screen flex-col md:flex-row p-4">
+		<div className="flex flex-col md:flex-row">
 			<Sidebar
 				isOpen={isSidebarOpen}
 				onClose={() => setIsSidebarOpen(false)}
@@ -35,7 +35,7 @@ export default function Dashboard() {
 				>
 					☰ Open Menu
 				</button>
-				<div>
+				<div className='flex justify-center w-full'>
 					<Outlet />
 				</div>
 			</div>

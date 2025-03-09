@@ -5,7 +5,6 @@ import { CalendarDays, MapPin, Ticket, Users } from 'lucide-react';
 import Loading from '../components/Loading';
 import JoinQueue from '../components/feature/JoinQueue';
 import { SignInButton, useUser } from '@clerk/clerk-react';
-import { useStorageUrl } from '../libs/utils';
 import Button from '../components/Button';
 import { useParams } from 'react-router';
 
@@ -31,7 +30,6 @@ export default function EventPage() {
 	const availability = useQuery(api.events.getEventAvailability, {
 		eventId: params.id,
 	});
-	const imageUrl = useStorageUrl(event?.imageStorageId);
 
 	if (!event || !availability) {
 		return <Loading />;
@@ -40,16 +38,8 @@ export default function EventPage() {
 	return (
 		<div className=" bg-base-200 min-h-screen">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-				<div className="bg-base-100 rounded-xl shadow-sm overflow-hidden">
-					{imageUrl && (
-						<div className="aspect-[21/9] relative w-full">
-							<img
-								src={imageUrl}
-								alt={event.name}
-								className="object-cover w-full h-full"
-							/>
-						</div>
-					)}
+				<div className="bg-white rounded-xl shadow-sm overflow-hidden">
+					
 
 					<div className="p-8">
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
