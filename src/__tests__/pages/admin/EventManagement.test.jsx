@@ -13,7 +13,6 @@ vi.mock('convex/react', async () => {
 	return {
 		...actual,
 		useQuery: (queryKey) => {
-			console.log('Received queryKey:', queryKey);
 			if (queryKey === 'mocked_events_get') return mockEvents;
 			return null;
 		},

@@ -1,17 +1,15 @@
-export const mockDataEvent = {
-	name: 'Mock Event',
-	description: 'Mock description',
-	location: 'Mock location',
-	eventDate: Date.now(),
-	price: 200,
-	totalTickets: 10,
-	userId: '123',
-	is_cancelled: false,
+export const mockEvent = {
+	_id: 'event123',
+	name: 'Summer Concert',
+	description: 'A fantastic summer concert experience',
+	eventDate: new Date('2025-06-15').toISOString(),
+	location: 'Central Park, New York',
+	price: 75.0,
 };
 
 export const mockAvailability = {
-	totalTickets: 10,
-	purchasedCount: 2,
+	totalTickets: 500,
+	purchasedCount: 150,
 };
 
 export const mockUser = {
@@ -179,3 +177,13 @@ export const mockEvents = [
 		price: '$70',
 	},
 ];
+
+export const soldOutAvailability = {
+	totalTickets: 500,
+	purchasedCount: 500,
+};
+
+export const noDescriptionEvent = {
+	...mockEvent,
+	description: '',
+};

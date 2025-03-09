@@ -15,7 +15,11 @@ import AddEvent from '../pages/AddEvent';
 import MyTickets from '../pages/MyTickets';
 import EditEvent from '../pages/EditEvent';
 import EventDetails from '../pages/EventDetails';
-import { mockAvailability, mockDataEvent, mockUser } from '../mocks/mockData';
+import {
+	mockAvailability,
+	mockEvent,
+	mockUser,
+} from '../mocks/mockData';
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
@@ -41,7 +45,7 @@ vi.mock('convex/react', async () => {
 			if (queryKey === 'mocked_users_getUser') return mockUser;
 			if (queryKey === 'mocked_events_getEventAvailability')
 				return mockAvailability;
-			if (queryKey === 'mocked_events_getById') return mockDataEvent;
+			if (queryKey === 'mocked_events_getById') return mockEvent;
 			if (
 				['mocked_users_getAllUsers', 'mocked_events_get'].includes(
 					queryKey
