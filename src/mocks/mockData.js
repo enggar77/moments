@@ -2,14 +2,16 @@ export const mockEvent = {
 	_id: 'event123',
 	name: 'Summer Concert',
 	description: 'A fantastic summer concert experience',
-	eventDate: new Date('2025-06-15').toISOString(),
+	eventDate: Date.now() + 86400000, // tomorrow,
 	location: 'Central Park, New York',
 	price: 75.0,
+	imageStorageId: 'image123',
 };
 
 export const mockAvailability = {
 	totalTickets: 500,
 	purchasedCount: 150,
+	activeOffers: 2,
 };
 
 export const mockUser = {
@@ -186,4 +188,11 @@ export const soldOutAvailability = {
 export const noDescriptionEvent = {
 	...mockEvent,
 	description: '',
+};
+
+export const mockUserTicket = { _id: 'ticket123' };
+
+export const mockQueuePosition = {
+	status: 'waiting',
+	position: 5,
 };

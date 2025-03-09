@@ -13,5 +13,8 @@ export default defineConfig({
 		environment: 'jsdom',
 		// global test setup
 		setupFiles: './tests/setup.js',
+		coverage: {
+			exclude: ['convex'],
+		},
 	},
 });

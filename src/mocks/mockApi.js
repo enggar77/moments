@@ -10,8 +10,12 @@ export const mockApi = {
 			getUser: 'mocked_users_getUser',
 			getAllUsers: 'mocked_users_getAllUsers',
 		},
-		tickets: {},
-		waitingList: {},
+		tickets: {
+			getUserTicketForEvent: 'mocked_tickets_getUserTicketForEvent',
+		},
+		waitingList: {
+			getQueuePosition: 'mocked_waitingList_getQueuePosition',
+		},
 		storage: {},
 	},
 };
