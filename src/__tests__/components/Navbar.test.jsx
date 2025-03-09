@@ -4,9 +4,6 @@ import Navbar from '../../components/Navbar';
 import {
 	useClerk,
 	useUser,
-	SignedIn,
-	SignedOut,
-	UserButton,
 } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
 
@@ -34,7 +31,7 @@ vi.mock('convex/react', () => ({
 
 // Mock React Router, tetapi tetap gunakan `MemoryRouter` dari versi asli
 vi.mock('react-router', async () => {
-	const actual = await vi.importActual('react-router-dom');
+	const actual = await vi.importActual('react-router');
 	return {
 		...actual,
 		useLocation: vi.fn(),
