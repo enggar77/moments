@@ -26,23 +26,20 @@ export const mockUsers = [
 		name: 'Alice Johnson',
 		email: 'alice@example.com',
 		role: 'admin',
-		status: 'Active',
 		avatar: null,
 	},
 	{
 		_id: '2',
 		name: 'Bob Smith',
-		email: 'bob@example.com',
+		email: 'abob@example.com',
 		role: 'user',
-		status: 'Active',
-		avatar: 'avatar-url',
+		avatar: 'avatar-url.com',
 	},
 	{
 		_id: '3',
 		name: 'Charlie Brown',
 		email: 'charlie@example.com',
 		role: 'organizer',
-		status: 'Blocked',
 		avatar: null,
 	},
 	{
@@ -50,7 +47,6 @@ export const mockUsers = [
 		name: 'Diana Prince',
 		email: 'diana@example.com',
 		role: 'user',
-		status: 'Active',
 		avatar: null,
 	},
 	{
@@ -58,7 +54,6 @@ export const mockUsers = [
 		name: 'Evan Williams',
 		email: 'evan@example.com',
 		role: 'organizer',
-		status: 'Active',
 		avatar: null,
 	},
 	{
@@ -66,7 +61,6 @@ export const mockUsers = [
 		name: 'Frank Castle',
 		email: 'frank@example.com',
 		role: 'user',
-		status: 'Blocked',
 		avatar: null,
 	},
 	{
@@ -74,7 +68,6 @@ export const mockUsers = [
 		name: 'Grace Lee',
 		email: 'grace@example.com',
 		role: 'admin',
-		status: 'Active',
 		avatar: null,
 	},
 	{
@@ -82,7 +75,6 @@ export const mockUsers = [
 		name: 'Henry Ford',
 		email: 'henry@example.com',
 		role: 'user',
-		status: 'Active',
 		avatar: null,
 	},
 	{
@@ -90,7 +82,6 @@ export const mockUsers = [
 		name: 'Irene Adler',
 		email: 'irene@example.com',
 		role: 'organizer',
-		status: 'Active',
 		avatar: null,
 	},
 	{
@@ -98,7 +89,6 @@ export const mockUsers = [
 		name: 'Jack Ryan',
 		email: 'jack@example.com',
 		role: 'user',
-		status: 'Active',
 		avatar: null,
 	},
 	{
@@ -106,7 +96,6 @@ export const mockUsers = [
 		name: 'Kate Bishop',
 		email: 'kate@example.com',
 		role: 'admin',
-		status: 'Active',
 		avatar: null,
 	},
 ];
