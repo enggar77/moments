@@ -46,7 +46,7 @@ export default function FormEvent() {
 					: '',
 			}));
 		}
-	}, [eventData]);
+	}, [eventData, eventId]);
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;

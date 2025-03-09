@@ -1,4 +1,3 @@
-import { Form } from 'react-router';
 import { Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
@@ -15,7 +14,7 @@ export default function SearchBar({
 	}, [debouncedValue, setSearchTerm]);
 
 	return (
-		<Form action="/search" className="relative w-full md:w-auto">
+		<form action="/search" className="relative w-full md:w-auto">
 			<input
 				type="text"
 				placeholder={placeholder}
@@ -25,6 +24,6 @@ export default function SearchBar({
 				onChange={(e) => setInputValue(e.target.value)}
 			/>
 			<Search className="text-base-content/30 absolute left-3 top-2 w-4" />
-		</Form>
+		</form>
 	);
 }

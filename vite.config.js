@@ -7,9 +7,15 @@ import { configDefaults } from 'vitest/config';
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
 	test: {
+		// support `describe`, `test` etc. globally,
+		// so you don't need to import them every time
 		globals: true,
+		// run tests in jsdom environment
 		environment: 'jsdom',
-		setupFiles: './vitest.setup.js',
-		exclude: [...configDefaults.exclude],
+		// global test setup
+		setupFiles: './tests/setup.js',
+		coverage: {
+			exclude: ['convex'],
+		},
 	},
 });
