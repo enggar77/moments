@@ -1,3 +1,4 @@
+import { mockApi } from '../mocks/mockApi';
 import { render, screen } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router';
 import { ConvexProvider, ConvexReactClient } from 'convex/react';
@@ -10,11 +11,11 @@ import Overview from '../pages/Overview';
 import EventManagement from '../pages/admin/EventManagement';
 import UserManagement from '../pages/admin/UserManagement';
 import TransactionManagement from '../pages/TransactionManagement';
-import { api } from '../../convex/_generated/api';
 import AddEvent from '../pages/AddEvent';
 import MyTickets from '../pages/MyTickets';
 import EditEvent from '../pages/EditEvent';
 import EventDetails from '../pages/EventDetails';
+import { mockAvailability, mockDataEvent, mockUser } from '../mocks/mockData';
 
 const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL);
 
@@ -28,18 +29,29 @@ vi.mock('@clerk/clerk-react', () => ({
 	UserButton: () => <div data-testid="user-button" />,
 }));
 
+// Mock api call
+vi.mock('../../convex/_generated/api', () => mockApi);
+
 // Mock Convex hooks
 vi.mock('convex/react', async () => {
 	const actual = await vi.importActual('convex/react');
 	return {
 		...actual,
 		useQuery: (queryKey) => {
-			if (queryKey === api.users.getUser) return { role: 'admin' };
-			if (queryKey === api.events.get)
-				return [{ id: 1, name: 'Event 1' }];
-			// add query event details
-			return null;
+			if (queryKey === 'mocked_users_getUser') return mockUser;
+			if (queryKey === 'mocked_events_getEventAvailability')
+				return mockAvailability;
+			if (queryKey === 'mocked_events_getById') return mockDataEvent;
+			if (
+				['mocked_users_getAllUsers', 'mocked_events_get'].includes(
+					queryKey
+				)
+			)
+				return [];
+
+			return [];
 		},
+		useMutation: () => ({}),
 	};
 });
 
@@ -107,7 +119,10 @@ describe('App Routing', () => {
 		expect(screen.getByText(/Edit Event/i)).toBeInTheDocument();
 	});
 
-	// add test for EventDetails
+	it('renders Event Details page when navigating to /event/:id', () => {
+		renderWithRouter('/event/123');
+		expect(screen.getByText(/Event Information/i)).toBeInTheDocument();
+	});
 
 	it('renders Add Event page when navigating to /sell', () => {
 		renderWithRouter('/sell');
@@ -135,16 +150,14 @@ describe('Admin Pages in Dashboard', () => {
 	it('renders Event Management page', () => {
 		renderWithRouter('/dashboard/events');
 		expect(
-			screen.getByText(/Showing \d+ of \d+ entries/i)
+			screen.getByRole('heading', { name: /Concerts Management/i })
 		).toBeInTheDocument();
 	});
 
 	it('renders User Management page', () => {
 		renderWithRouter('/dashboard/users');
 		const tableText = screen.getByRole('table').textContent;
-		expect(tableText).toMatch(
-			/User|Email|Registration Date|Purchases|Status|Actions/
-		);
+		expect(tableText).toMatch(/User|Email|Role|Actions/);
 	});
 
 	it('renders Transaction Management page', () => {
