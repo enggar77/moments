@@ -16,7 +16,6 @@ export default function Navbar() {
 	const { user, isLoaded } = useUser();
 	const { openSignIn } = useClerk();
 	const { pathname } = useLocation();
-	const { pathname } = useLocation();
 
 	// Only run the query if user exists and is loaded
 	const userRole = useQuery(
