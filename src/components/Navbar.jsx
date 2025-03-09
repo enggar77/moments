@@ -7,15 +7,15 @@ import {
 } from '@clerk/clerk-react';
 
 import Button from './Button';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useQuery } from 'convex/react';
 import { api } from '../../convex/_generated/api';
 import SearchBar from './SearchBar';
-import { useLocation } from 'react-router';
 
 export default function Navbar() {
 	const { user, isLoaded } = useUser();
 	const { openSignIn } = useClerk();
+	const { pathname } = useLocation();
 	const { pathname } = useLocation();
 
 	// Only run the query if user exists and is loaded
@@ -32,16 +32,20 @@ export default function Navbar() {
 				</Link>
 
 				<div className="flex items-center gap-10">
-					{/* <div className="hidden lg:block">
-						<SearchBar />
-					</div> */}
+					{pathname === '/' && (
+						<div className="hidden lg:block">
+							<SearchBar />
+						</div>
+					)}
 					{children}
 				</div>
 			</div>
 
-			{/* <div className="lg:hidden">
-				<SearchBar />
-			</div> */}
+			{pathname === '/' && (
+				<div className="lg:hidden">
+					<SearchBar />
+				</div>
+			)}
 		</div>
 	);
 
@@ -52,7 +56,10 @@ export default function Navbar() {
 	if (!user) {
 		return navbarLayout(
 			<SignedOut>
-				<Button className={'btn-sm'} onClick={() => openSignIn()}>
+				<Button
+					className={'btn-sm btn-primary'}
+					onClick={() => openSignIn()}
+				>
 					Sign In
 				</Button>
 			</SignedOut>
@@ -79,14 +86,18 @@ export default function Navbar() {
 			<div className="text-sm font-medium">
 				{/* Event Organizer */}
 				{userRole.role === 'organizer' && (
-					<Link to="/sell">
-						<Button className={'btn-sm'}>Sell Tickets</Button>
+					<Link to="/seller">
+						<Button className={'btn-sm btn-primary'}>
+							Sell Tickets
+						</Button>
 					</Link>
 				)}
 				{/* Regular User */}
 				{userRole.role === 'user' && (
 					<Link to={`ticket/${user.id}`}>
-						<Button className={'btn-sm'}>My Tickets</Button>
+						<Button className={'btn-sm btn-primary'}>
+							My Tickets
+						</Button>
 					</Link>
 				)}
 				{/* Admin */}

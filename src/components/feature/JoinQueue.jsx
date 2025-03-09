@@ -1,11 +1,12 @@
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useMutation, useQuery } from 'convex/react';
-import { WAITING_LIST_STATUS } from '../../convex/constants';
-import Loading from './Loading';
+import { WAITING_LIST_STATUS } from '../../../convex/constants';
+import Loading from '../Loading';
 import { Clock, OctagonXIcon } from 'lucide-react';
-import { useToast } from '../libs/useToast';
+import { useToast } from '../../libs/useToast';
 import { ConvexError } from 'convex/values';
-import Button from './Button';
+import Button from '../Button';
+import { useUser } from '@clerk/clerk-react';
 
 export default function JoinQueue({ eventId, userId }) {
 	const { addToast, ToastContainer } = useToast();
@@ -20,8 +21,8 @@ export default function JoinQueue({ eventId, userId }) {
 	});
 	const availability = useQuery(api.events.getEventAvailability, { eventId });
 	const event = useQuery(api.events.getById, { eventId });
-
-	const isEventOwner = userId === event?.userId;
+	const { user } = useUser();
+	const userRole = useQuery(api.users.getUser, { userId: user.id });
 
 	const handleJoinQueue = async () => {
 		try {
@@ -61,12 +62,10 @@ export default function JoinQueue({ eventId, userId }) {
 					queuePosition.offerExpiresAt &&
 					queuePosition.offerExpiresAt <= Date.now())) && (
 				<>
-					{isEventOwner ? (
+					{userRole.role !== 'user' ? (
 						<div className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-gray-100 text-gray-700 rounded-lg">
 							<OctagonXIcon className="w-5 h-5" />
-							<span>
-								You cannot buy a ticket for your own event
-							</span>
+							<span>{userRole.role} cannot buy a ticket</span>
 						</div>
 					) : isPastEvent ? (
 						<div className="flex items-center justify-center gap-2 w-full py-3 px-4 bg-gray-100 text-gray-500 rounded-lg cursor-not-allowed">
@@ -83,8 +82,8 @@ export default function JoinQueue({ eventId, userId }) {
 					) : (
 						<Button
 							onClick={handleJoinQueue}
-							disabled={isPastEvent || isEventOwner}
-							className="w-full btn-lg"
+							disabled={isPastEvent || userRole.role !== 'user'}
+							className="w-full btn-lg btn-warning"
 						>
 							Buy Ticket
 						</Button>

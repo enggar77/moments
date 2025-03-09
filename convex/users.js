@@ -1,6 +1,6 @@
 import { query, mutation } from './_generated/server';
 import { v } from 'convex/values';
-import { ADMIN_EMAILS, ORGANIZER_EMAILS } from '../src/libs/utils';
+import { ADMIN_EMAILS, ORGANIZER_EMAILS } from './constants';
 
 export const createUser = mutation({
 	args: {
@@ -33,7 +33,7 @@ export const createUser = mutation({
 
 export const getAllUsers = query({
 	handler: async (ctx) => {
-		return await ctx.db.query('users').collect();
+		return await ctx.db.query('users').all();
 	},
 });
 
@@ -75,16 +75,34 @@ export const updateOrCreateUserStripeConnectId = mutation({
 	},
 });
 
-export const updateUserRole = mutation({
-	args: {
-		userId: v.id('users'),
-		role: v.union(
-			v.literal('user'),
-			v.literal('organizer'),
-			v.literal('admin')
-		),
+export const deleteUser = mutation({
+	args: { userId: v.string() },
+	handler: async (ctx, args) => {
+		const user = await ctx.db
+			.query('users')
+			.withIndex('by_userId', (q) => q.eq('userId', args.userId))
+			.first();
+
+		if (!user) {
+			throw new Error('User not found');
+		}
+
+		await ctx.db.delete(user._id);
 	},
-	handler: async (ctx, { userId, role }) => {
-		await ctx.db.patch(userId, { role });
+});
+
+export const changeUserRole = mutation({
+	args: { userId: v.string(), role: v.string() },
+	handler: async (ctx, args) => {
+		const user = await ctx.db
+			.query('users')
+			.withIndex('by_userId', (q) => q.eq('userId', args.userId))
+			.first();
+
+		if (!user) {
+			throw new Error('User not found');
+		}
+
+		await ctx.db.patch(user._id, { role: args.role });
 	},
 });

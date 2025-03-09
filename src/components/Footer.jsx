@@ -1,5 +1,3 @@
-import { Ticket } from 'lucide-react';
-
 export default function Footer() {
 	return (
 		<footer className=' w-full footer sm:footer-horizontal bg-[#F9F9FF] p-10 px-20 flex flex-col z-10 shadow-md text-[#7777A1]'>

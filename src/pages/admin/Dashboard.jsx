@@ -1,8 +1,8 @@
 import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useUser } from '@clerk/clerk-react';
 import { Link, useNavigate, Outlet } from 'react-router';
-import Sidebar from '../components/Sidebar';
+import Sidebar from '../../components/Sidebar';
 import { useEffect, useState } from 'react';
 
 export default function Dashboard() {
@@ -11,12 +11,12 @@ export default function Dashboard() {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
 	// Only run the query if user exists and is loaded
-	// const userRole = useQuery(
-	// 	api.users.getUser,
-	// 	isLoaded && user?.id ? { userId: user.id } : 'skip'
-	// );
+	const userRole = useQuery(
+		api.users.getUser,
+		isLoaded && user?.id ? { userId: user.id } : 'skip'
+	);
 
-	// if (userRole?.role !== 'admin') navigate('/');
+	if (!user || userRole.role !== 'admin') navigate('/');
 
 	useEffect(() => {
 		document.body.style.overflow = isSidebarOpen ? 'hidden' : 'auto';

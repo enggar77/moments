@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useUser } from '@clerk/clerk-react';
-import { api } from '../../convex/_generated/api';
+import { api } from '../../../convex/_generated/api';
 import { useQuery } from 'convex/react';
-import ReleaseTicket from '../components/ReleaseTicket';
-import { useNavigate, useLocation } from 'react-router';
-import Button from './Button';
+import ReleaseTicket from './ReleaseTicket';
+import { useLocation } from 'react-router';
+import Button from '../Button';
+import { createStripeCheckoutSession } from '../../libs/createStripeCheckoutSession';
 
 export default function PurchaseTicket({ eventId }) {
-	const navigate = useNavigate();
 	const { pathname } = useLocation();
 	const { user } = useUser();
 	const queuePosition = useQuery(api.waitingList.getQueuePosition, {
@@ -51,20 +51,21 @@ export default function PurchaseTicket({ eventId }) {
 	}, [offerExpiresAt, isExpired]);
 
 	const handlePurchase = async () => {
-		// if (!user) return;
-		// try {
-		//   setIsLoading(true);
-		//   const { sessionUrl } = await createStripeCheckoutSession({
-		//     eventId,
-		//   });
-		//   if (sessionUrl) {
-		//     router.push(sessionUrl);
-		//   }
-		// } catch (error) {
-		//   console.error("Error creating checkout session:", error);
-		// } finally {
-		//   setIsLoading(false);
-		// }
+		if (!user) return;
+		try {
+			setIsLoading(true);
+			const { sessionUrl } = await createStripeCheckoutSession({
+				eventId,
+				userId: user.id,
+			});
+			if (sessionUrl) {
+				window.location.href = sessionUrl;
+			}
+		} catch (error) {
+			console.error('Error creating checkout session:', error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	if (!user || !queuePosition || queuePosition.status !== 'offered') {
@@ -72,7 +73,7 @@ export default function PurchaseTicket({ eventId }) {
 	}
 
 	return (
-		<div className="p-5 border-warning border rounded">
+		<div className="p-5 border-warning/50 border rounded">
 			<div className="space-y-4">
 				<div>
 					<h3 className="text-lg font-semibold">Ticket Reserved</h3>
@@ -92,7 +93,7 @@ export default function PurchaseTicket({ eventId }) {
 						<Button
 							onClick={handlePurchase}
 							disabled={isExpired || isLoading}
-							className="btn-md btn-warning w-full"
+							className="btn-lg btn-warning w-full"
 						>
 							{isLoading
 								? 'Redirecting to checkout...'
