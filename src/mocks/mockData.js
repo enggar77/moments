@@ -17,4 +17,5 @@ export const mockAvailability = {
 export const mockUser = {
 	name: 'Mock user',
 	role: 'admin',
+	email: 'mock@mail.com'
 };
