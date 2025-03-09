@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import TicketCard from '../TicketCard';
+import TicketCard from '../../components/TicketCard';
 import { describe, it, expect } from 'vitest';
 
 const mockData = {

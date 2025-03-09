@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
-import PurchaseTicket from '../PurchaseTicket';
+import PurchaseTicket from '../../components/PurchaseTicket';
 import { useUser } from '@clerk/clerk-react';
 import { useQuery, useMutation } from 'convex/react';
 import { useLocation } from 'react-router';
@@ -11,7 +11,7 @@ vi.mock('@clerk/clerk-react', () => ({
 
 vi.mock('convex/react', () => ({
 	useQuery: vi.fn(),
-	useMutation: vi.fn(() => vi.fn()), // ✅ Pastikan useMutation dimock sebagai fungsi
+	useMutation: vi.fn(() => vi.fn()),
 }));
 
 vi.mock('react-router', () => ({
