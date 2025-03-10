@@ -46,8 +46,8 @@ export default function TransactionManagement() {
 	);
 
 	return (
-		<div className="flex flex-col md:flex-row">
-			<main className="p-6 flex-1">
+		<div className="p-6 w-full max-w-full">
+			<main className="flex-1 bg-white p-6 rounded-lg shadow-md">
 				<h2 className="text-2xl font-bold mb-6">
 					Transactions Management
 				</h2>
@@ -57,7 +57,7 @@ export default function TransactionManagement() {
 						placeholder="Search transactions..."
 						value={search}
 						onChange={(e) => setSearch(e.target.value)}
-						className="input input-bordered w-full md:w-80"
+						className="input input-bordered w-full"
 					/>
 					<select
 						value={statusFilter}
@@ -71,9 +71,9 @@ export default function TransactionManagement() {
 					</select>
 					<button className="btn btn-neutral">Export</button>
 				</div>
-				<div className="overflow-x-auto">
-					<table className="table table-zebra w-full">
-						<thead>
+				<div className="overflow-x-auto w-full">
+					<table className="table table-auto min-w-max text-xs sm:text-sm">
+						<thead className='bg-gray-100'>
 							<tr>
 								<th>Transaction ID</th>
 								<th>User Name</th>

@@ -65,9 +65,9 @@ export default function AdminUserManagement() {
 	);
 
 	return (
-		<div className="p-6 block">
+		<div className="p-6 w-full max-w-full">
 			<div className="bg-white p-6 rounded-lg shadow-md">
-				<div className="flex flex-row justify-between items-center gap-4">
+				<div className="flex flex-row justify-between items-center gap-4 mb-4">
 					<SearchBar
 						setSearchTerm={setSearchTerm}
 						placeholder="Search users..."
@@ -96,8 +96,8 @@ export default function AdminUserManagement() {
 					</div>
 				</div>
 
-				<div className="overflow-x-auto mt-6">
-					<table className="table w-full">
+				<div className="overflow-x-auto w-full">
+					<table className="table table-auto min-w-max text-xs sm:text-sm">
 						<thead className="bg-gray-100">
 							<tr>
 								<th>User</th>

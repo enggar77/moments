@@ -75,15 +75,15 @@ function EventManagement() {
 				</div>
 
 				<div className="overflow-x-auto w-full">
-					<table className="table table-auto min-w-max text-xs sm:text-sm border border-base-content/5">
-						<thead>
+					<table className="table table-auto min-w-max text-xs sm:text-sm">
+						<thead className='bg-gray-100'>
 							<tr>
 								<th>Event Name</th>
 								<th>Date</th>
 								<th>Venue</th>
 								<th>Price</th>
 								<th>Status</th>
-								<th>Actions</th>
+								{/* <th>Actions</th> */}
 							</tr>
 						</thead>
 						<tbody>
@@ -115,11 +115,9 @@ function EventManagement() {
 													: 'Past'}
 											</span>
 										</td>
-										<td>
-											{/* <button className="btn btn-sm btn-ghost" onClick={() => handleDelete(event._id)}>
-                        <Trash />
-                      </button> */}
-										</td>
+										{/* <td>
+											<button className="btn btn-sm btn-ghost" onClick={() => handleDelete(event._id)}><Trash /></button>
+										</td> */}
 									</tr>
 								);
 							})}
