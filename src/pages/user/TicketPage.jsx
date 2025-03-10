@@ -4,7 +4,6 @@ import { useUser } from '@clerk/clerk-react';
 import { useNavigate, useParams, Link } from 'react-router';
 import TicketPurchase from './TicketPurchase';
 import { ArrowLeft, Download, Share2 } from 'lucide-react';
-import { useEffect } from 'react';
 
 export default function TicketPage() {
 	const params = useParams();
@@ -15,24 +14,22 @@ export default function TicketPage() {
 		ticketId: params.id,
 	});
 
-	useEffect(() => {
-		if (isLoaded && !user) {
-			navigate('/');
-			return;
-		}
+	if (isLoaded && !user) {
+		navigate('/');
+		return;
+	}
 
-		if (ticket && (!ticket.event || (user && ticket.userId !== user.id))) {
-			navigate('/tickets');
-			return;
-		}
-	}, [user, ticket, isLoaded, navigate]);
+	if (ticket && (!ticket.event || (user && ticket.userId !== user.id))) {
+		navigate('/tickets');
+		return;
+	}
 
 	if (!isLoaded || !ticket || !ticket.event) {
 		return null;
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+		<div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
 			<div className="max-w-3xl mx-auto">
 				<div className="mb-8 space-y-8">
 					{/* Navigation and Actions */}

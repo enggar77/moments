@@ -10,9 +10,10 @@ export default function Layout() {
 		window.scrollTo(0, 0);
 	}, [location]);
 	return (
-		<div className="bg-base-100 text-base-content relative">
+		<div className="bg-base-200 text-base-content relative text-sm">
+			<Navbar />
+
 			<div className="min-h-screen flex flex-col max-w-7xl mx-auto">
-				<Navbar />
 				<main className="grow">
 					<Outlet />
 				</main>

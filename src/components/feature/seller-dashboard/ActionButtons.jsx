@@ -1,5 +1,6 @@
 import React from 'react';
 import { Cog } from 'lucide-react';
+import Button from '../../Button';
 
 export default function ActionButtons({
 	accountStatus,
@@ -15,8 +16,8 @@ export default function ActionButtons({
 						Complete your account setup
 					</h3>
 					<p className="text-sm text-yellow-700 mt-1 mb-3">
-						Your Stripe account requires additional information before you can
-						accept payments.
+						Your Stripe account requires additional information
+						before you can accept payments.
 					</p>
 					<button
 						onClick={onCompleteOnboarding}
@@ -55,13 +56,10 @@ export default function ActionButtons({
 			)}
 
 			{accountStatus.isActive && (
-				<button
-					onClick={onManageAccount}
-					className="flex items-center justify-center gap-2 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors"
-				>
+				<Button onClick={onManageAccount} className="btn-soft w-full">
 					<Cog className="w-5 h-5" />
 					Manage Stripe Account
-				</button>
+				</Button>
 			)}
 		</div>
 	);

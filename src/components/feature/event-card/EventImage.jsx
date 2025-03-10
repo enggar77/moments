@@ -2,7 +2,7 @@ export default function EventImage({ imageUrl, eventName }) {
 	if (!imageUrl) return null;
 
 	return (
-		<div className="relative w-full h-80">
+		<div className="relative w-full h-52">
 			<img
 				src={imageUrl}
 				alt={eventName}

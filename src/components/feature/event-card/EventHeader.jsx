@@ -16,7 +16,7 @@ export default function EventHeader({
 							Your Event
 						</span>
 					)}
-					<h2 className="text-2xl font-bold text-gray-900">
+					<h2 className="text-xl font-bold text-gray-900">
 						{event.name}
 					</h2>
 				</div>

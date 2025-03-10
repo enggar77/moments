@@ -1,6 +1,6 @@
 import { useUser } from '@clerk/clerk-react';
 import { useQuery } from 'convex/react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { api } from '../../../convex/_generated/api';
 import { useStorageUrl } from '../../libs/utils';
 import { CalendarDays, MapPin, Ticket } from 'lucide-react';
@@ -10,6 +10,7 @@ import TicketStatus from './event-card/TicketStatus';
 
 export default function EventCard({ eventId }) {
 	const { user } = useUser();
+	const { pathname } = useLocation();
 	const navigate = useNavigate();
 	const event = useQuery(api.events.getById, { eventId });
 	const availability = useQuery(api.events.getEventAvailability, { eventId });
@@ -33,11 +34,13 @@ export default function EventCard({ eventId }) {
 	return (
 		<div
 			onClick={() => navigate(`/event/${eventId}`)}
-			className={`rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-base-200 cursor-pointer overflow-hidden relative ${
+			className={`rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-base-200 cursor-pointer overflow-hidden relative bg-base-100 ${
 				isPastEvent ? 'opacity-75 hover:opacity-100' : ''
 			}`}
 		>
-			{/* <EventImage imageUrl={imageUrl} eventName={event.name} /> */}
+			{pathname !== `/event/${eventId}` && (
+				<EventImage imageUrl={imageUrl} eventName={event.name} />
+			)}
 
 			<div className={`p-6 ${imageUrl ? 'relative' : ''}`}>
 				<EventHeader

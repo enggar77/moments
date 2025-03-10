@@ -24,27 +24,29 @@ export default function Navbar() {
 	);
 
 	const navbarLayout = (children) => (
-		<div className="flex flex-col p-3 gap-4 md:px-10 border-b border-base-content/10 sticky inset-0 bg-base-100 z-10">
-			<div className="flex justify-between items-center">
-				<Link to="/">
-					<h1 className="font-semibold text-xl">MOMENTS</h1>
-				</Link>
+		<div className="border-b border-base-content/10 sticky inset-0 bg-base-200 z-10">
+			<div className="flex flex-col p-3 gap-4 md:px-10 max-w-7xl mx-auto">
+				<div className="flex justify-between items-center">
+					<Link to="/">
+						<h1 className="font-semibold text-xl">MOMENTS</h1>
+					</Link>
 
-				<div className="flex items-center gap-10">
-					{pathname === '/' && (
-						<div className="hidden lg:block">
-							<SearchBar />
-						</div>
-					)}
-					{children}
+					<div className="flex items-center gap-10">
+						{(pathname === '/' || pathname === '/search') && (
+							<div className="hidden lg:block">
+								<SearchBar />
+							</div>
+						)}
+						{children}
+					</div>
 				</div>
+
+				{(pathname === '/' || pathname === '/search') && (
+					<div className="lg:hidden">
+						<SearchBar />
+					</div>
+				)}
 			</div>
-
-			{pathname === '/' && (
-				<div className="lg:hidden">
-					<SearchBar />
-				</div>
-			)}
 		</div>
 	);
 

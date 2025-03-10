@@ -15,6 +15,7 @@ import SellerEvents from './pages/seller/SellerEvents';
 import PurchaseSuccess from './pages/user/PurchaseSuccess';
 import MyTickets from './pages/user/MyTickets';
 import TicketPage from './pages/user/TicketPage';
+import SearchPage from './pages/SearchPage';
 
 const router = createBrowserRouter([
 	{
@@ -22,10 +23,17 @@ const router = createBrowserRouter([
 		errorElement: <Error />,
 
 		children: [
+			// HOME
 			{
 				path: '/',
 				element: <Home />,
 			},
+			{
+				path: '/search',
+				element: <SearchPage />,
+			},
+
+			//USER TICKET
 			{
 				path: '/tickets/:id',
 				element: <MyTickets />,
@@ -38,6 +46,8 @@ const router = createBrowserRouter([
 				path: 'ticket/purchase-success',
 				element: <PurchaseSuccess />,
 			},
+
+			// SELLER / ORGANIZER
 			{
 				path: '/seller',
 				element: <Seller />,
@@ -62,10 +72,14 @@ const router = createBrowserRouter([
 				path: '/seller/events/:id/edit',
 				element: <EditEvent />,
 			},
+
+			// EVENT DETAILS
 			{
 				path: '/event/:id',
 				element: <EventDetails />,
 			},
+
+			// ADMIN DASHBOARD
 			{
 				path: '/dashboard',
 				element: <Dashboard />,
