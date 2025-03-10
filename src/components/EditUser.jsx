@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Swal from 'sweetalert2';
 
 export default function EditUser({ setIsOpen, user }) {
-	const updateRole = useMutation(api.users.updateUserRole);
+	const updateRole = useMutation(api.users.changeUserRole);
 	const [role, setRole] = useState(user.role);
 
 	function handleClose() {
@@ -30,7 +30,7 @@ export default function EditUser({ setIsOpen, user }) {
 		if (!result.isConfirmed) return;
 
 		try {
-			await updateRole({ userId: user._id, role });
+			await updateRole({ userId: user.userId, role });
 
 			Swal.fire({
 				title: 'Updated!',
