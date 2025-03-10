@@ -46,7 +46,11 @@ export default function EventForm({ mode = 'create', initialData }) {
 		defaultValues: initialData
 			? {
 					...initialData,
-					eventDate: new Date(initialData.eventDate),
+					eventDate: initialData.eventDate // format date to show in edit mode
+						? new Date(initialData.eventDate)
+								.toISOString()
+								.split('T')[0]
+						: '',
 				}
 			: {},
 	});
