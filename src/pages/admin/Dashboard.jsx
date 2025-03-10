@@ -16,14 +16,14 @@ export default function Dashboard() {
 		isLoaded && user?.id ? { userId: user.id } : 'skip'
 	);
 
-	if (!user || userRole.role !== 'admin') navigate('/');
+	if (userRole?.role !== 'admin') navigate('/');
 
 	useEffect(() => {
 		document.body.style.overflow = isSidebarOpen ? 'hidden' : 'auto';
 	}, [isSidebarOpen]);
 
 	return (
-		<div className="flex h-screen flex-col md:flex-row p-4">
+		<div className="flex flex-col md:flex-row">
 			<Sidebar
 				isOpen={isSidebarOpen}
 				onClose={() => setIsSidebarOpen(false)}
@@ -35,7 +35,7 @@ export default function Dashboard() {
 				>
 					☰ Open Menu
 				</button>
-				<div>
+				<div className='flex justify-center w-full'>
 					<Outlet />
 				</div>
 			</div>
