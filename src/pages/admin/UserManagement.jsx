@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { ChevronLeft, ChevronRight, PersonStanding } from 'lucide-react';
-import { useQuery } from 'convex/react';
+import { useMutation, useQuery } from 'convex/react';
 import { api } from '../../../convex/_generated/api';
 import Loading from '../../components/Loading';
 import Button from '../../components/Button';
 import EditUser from '../../components/EditUser';
 import SearchBar from '../../components/SearchBar';
+import Swal from 'sweetalert2';
 
 const ITEMS_PER_PAGE = 10;
 const defaultAvatar =
@@ -14,6 +15,7 @@ const defaultAvatar =
 export default function AdminUserManagement() {
 	const [isOpen, setIsOpen] = useState(false);
 	const usersData = useQuery(api.users.getAllUsers);
+	const deleteUser = useMutation(api.users.deleteUser);
 	const [selectedUser, setSelectedUser] = useState(null);
 	const [searchTerm, setSearchTerm] = useState('');
 	const [roleFilter, setRoleFilter] = useState('all');
@@ -28,22 +30,58 @@ export default function AdminUserManagement() {
 		setSelectedUser(user);
 		setIsOpen(true);
 	}
-	// const [users, setUsers] = useState(usersData);
 
-	// const toggleStatus = (id) => {
-	// 	setUsers(
-	// 		users.map((user) =>
-	// 			user.id === id
-	// 				? {
-	// 						...user,
-	// 						status:
-	// 							user.status === 'Active' ? 'Blocked' : 'Active',
-	// 					}
-	// 				: user
-	// 		)
-	// 	);
-	// };
+	async function handleDelete(user) {
+		setSelectedUser(user);
+		const result = await Swal.fire({
+			title: 'Are you sure?',
+			text: `Delete user "${user.name}"?`,
+			showCancelButton: true,
+			confirmButtonText: 'Yes',
+			cancelButtonText: 'Cancel',
+			width: '25rem',
+			customClass: {
+				confirmButton: 'btn btn-sm btn-primary mx-2',
+				cancelButton: 'btn btn-sm btn-outline mx-2',
+				popup: 'rounded-lg',
+			},
+			buttonsStyling: false,
+		});
 
+		if (!result.isConfirmed) return;
+
+		try {
+			await deleteUser({ userId: user.userId });
+
+			Swal.fire({
+				title: 'Deleted!',
+				text: 'User is deleted.',
+				icon: 'success',
+				confirmButtonText: 'OK',
+				customClass: {
+					confirmButton: 'btn btn-sm btn-primary',
+					popup: 'rounded-lg',
+				},
+				buttonsStyling: false,
+			});
+		} catch (error) {
+			console.error(error);
+
+			Swal.fire({
+				title: 'Error',
+				text: 'Failed to delete.',
+				icon: 'error',
+				confirmButtonText: 'OK',
+				customClass: {
+					confirmButton: 'btn btn-sm btn-error',
+					popup: 'rounded-lg',
+				},
+				buttonsStyling: false,
+			});
+		}
+
+		setSelectedUser(null);
+	}
 	const filteredUsers = usersData.filter(
 		(user) =>
 			(roleFilter === 'all' || user.role === roleFilter) &&
@@ -127,14 +165,10 @@ export default function AdminUserManagement() {
 											Edit
 										</Button>
 										<Button
-											// onClick={() =>
-											// 	toggleStatus(user.id)
-											// }
+											onClick={() => handleDelete(user)}
 											className={`btn btn-sm btn-error`}
 										>
-											{user.status !== 'Active'
-												? 'Block'
-												: 'Unblock'}
+											Delete
 										</Button>
 									</td>
 								</tr>
