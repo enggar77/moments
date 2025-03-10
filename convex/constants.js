@@ -21,9 +21,13 @@ export const TICKET_STATUS = {
 export const ORGANIZER_EMAILS = [
 	'alexandrazoe23@gmail.com',
 	'ejihandoko@gmail.com',
+	'purnamasrahayu@gmail.com',
+	'411221090@mahasiswa.undira.ac.id',
+	'ronaldajha007@gmail.com',
 ];
 export const ADMIN_EMAILS = [
 	'jihandokoenggar@gmail.com',
 	'ronaldo.s.n666@gmail.com',
 	'akhmadramedhon31jl@gmail.com',
+	'artemiawitch@gmail.com',
 ];
