@@ -1,12 +1,37 @@
-# React + Vite
+# MOMENTS - Modern event ticketing platform with real-time queuing and instant payments
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live website : moments-mxkp.onrender.com/
 
-Currently, two official plugins are available:
+<img src="./public/home.png" alt="Home Page" width="768" height="auto">
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tech Stack
 
-## Expanding the ESLint configuration
+- React.js
+- TailwindCSS
+- DaisyUI
+- React Router
+- React hook form, zod
+- Clerk Auth
+- Convex Database
+- Stripe Connect
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+### For User
+
+- Real-time ticket availability tracking
+- Smart queuing system with position updates
+- Time-limited ticket offers
+- Secure payment processing with Stripe
+- Digital tickets with QR codes
+- Automatic refunds for cancelled events
+
+### For Event Organizer
+
+- Direct payments via Stripe Connect
+- Real-time sales monitoring
+- Automated queue management
+- Event analytics and tracking
+- Automatic ticket recycling
+- Customizable ticket limits
+- Event cancellation with automatic refunds
