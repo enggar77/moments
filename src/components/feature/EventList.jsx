@@ -1,11 +1,11 @@
 import { useQuery } from 'convex/react';
-import { api } from '../../convex/_generated/api';
-import Loading from './Loading';
+import { api } from '../../../convex/_generated/api';
+import Loading from '../Loading';
 import { CalendarDays, Ticket } from 'lucide-react';
 import EventCard from './EventCard';
 
 export default function EventList() {
-	const events = useQuery(api.events.get);
+	let events = useQuery(api.events.get);
 
 	if (!events) {
 		return <Loading />;
@@ -20,7 +20,7 @@ export default function EventList() {
 		.sort((a, b) => b.eventDate - a.eventDate);
 
 	return (
-		<div className="px-4 md:px-10">
+		<div className="px-4 md:px-10 max-w-7xl mx-auto">
 			{/* Header */}
 			<div className="flex items-center justify-between mb-8">
 				<div>
@@ -29,7 +29,7 @@ export default function EventList() {
 						Discover & book tickets for amazing events
 					</p>
 				</div>
-				<div className=" px-4 py-2 rounded-lg shadow-sm border ">
+				<div className=" px-4 py-2 rounded-lg shadow-sm border bg-base-300">
 					<div className="flex items-center gap-2 ">
 						<CalendarDays className="w-5 h-5" />
 						<span className="font-medium">

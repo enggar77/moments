@@ -1,6 +1,6 @@
 import { query, mutation } from './_generated/server';
 import { v } from 'convex/values';
-import { ADMIN_EMAILS, ORGANIZER_EMAILS } from '../src/libs/utils';
+import { ORGANIZER_EMAILS } from './constants';
 
 export const createUser = mutation({
 	args: {
@@ -10,7 +10,6 @@ export const createUser = mutation({
 	},
 	handler: async (ctx, args) => {
 		const isOrganizer = ORGANIZER_EMAILS.includes(args.email);
-		const isAdmin = ADMIN_EMAILS.includes(args.email);
 
 		const existingUser = await ctx.db
 			.query('users')
@@ -25,7 +24,7 @@ export const createUser = mutation({
 			userId: args.userId,
 			email: args.email,
 			name: args.name,
-			role: isOrganizer ? 'organizer' : isAdmin ? 'admin' : 'user',
+			role: isOrganizer ? 'organizer' : 'user',
 			stripeConnectId: undefined,
 		});
 	},
@@ -33,7 +32,8 @@ export const createUser = mutation({
 
 export const getAllUsers = query({
 	handler: async (ctx) => {
-		return await ctx.db.query('users').all();
+		// Fixed: using collect() instead of all()
+		return await ctx.db.query('users').collect();
 	},
 });
 
@@ -72,5 +72,37 @@ export const updateOrCreateUserStripeConnectId = mutation({
 		}
 
 		await ctx.db.patch(user._id, { stripeConnectId: args.stripeConnectId });
+	},
+});
+
+export const deleteUser = mutation({
+	args: { userId: v.string() },
+	handler: async (ctx, args) => {
+		const user = await ctx.db
+			.query('users')
+			.withIndex('by_userId', (q) => q.eq('userId', args.userId))
+			.first();
+
+		if (!user) {
+			throw new Error('User not found');
+		}
+
+		await ctx.db.delete(user._id);
+	},
+});
+
+export const changeUserRole = mutation({
+	args: { userId: v.string(), role: v.string() },
+	handler: async (ctx, args) => {
+		const user = await ctx.db
+			.query('users')
+			.withIndex('by_userId', (q) => q.eq('userId', args.userId))
+			.first();
+
+		if (!user) {
+			throw new Error('User not found');
+		}
+
+		await ctx.db.patch(user._id, { role: args.role });
 	},
 });

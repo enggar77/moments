@@ -1,9 +1,17 @@
-export default function Button({ className, onClick, children, icon, type }) {
+export default function Button({
+	className,
+	onClick,
+	children,
+	icon,
+	type,
+	disabled,
+}) {
 	return (
 		<button
-			className={`btn btn-sm btn-neutral ${className}`}
+			className={`btn ${className}`}
 			onClick={onClick}
 			type={type}
+			disabled={disabled}
 		>
 			{icon}
 			{children}

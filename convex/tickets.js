@@ -63,3 +63,31 @@ export const updateTicketStatus = mutation({
 		await ctx.db.patch(ticketId, { status });
 	},
 });
+
+export const getAllValidTickets = query({
+	args: {},
+	handler: async (ctx) => {
+		const tickets = await ctx.db
+			.query('tickets')
+			.filter((q) =>
+				q.or(
+					q.eq(q.field('status'), 'valid'),
+					q.eq(q.field('status'), 'used')
+				)
+			)
+			.collect();
+
+		// Fetch event details for each ticket
+		const ticketsWithEvents = await Promise.all(
+			tickets.map(async (ticket) => {
+				const event = await ctx.db.get(ticket.eventId);
+				return {
+					...ticket,
+					event,
+				};
+			})
+		);
+
+		return ticketsWithEvents;
+	},
+});
