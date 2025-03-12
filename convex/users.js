@@ -1,6 +1,6 @@
 import { query, mutation } from './_generated/server';
 import { v } from 'convex/values';
-import { ADMIN_EMAILS, ORGANIZER_EMAILS } from './constants';
+import { ORGANIZER_EMAILS } from './constants';
 
 export const createUser = mutation({
 	args: {
@@ -10,7 +10,6 @@ export const createUser = mutation({
 	},
 	handler: async (ctx, args) => {
 		const isOrganizer = ORGANIZER_EMAILS.includes(args.email);
-		const isAdmin = ADMIN_EMAILS.includes(args.email);
 
 		const existingUser = await ctx.db
 			.query('users')
@@ -25,7 +24,7 @@ export const createUser = mutation({
 			userId: args.userId,
 			email: args.email,
 			name: args.name,
-			role: isOrganizer ? 'organizer' : isAdmin ? 'admin' : 'user',
+			role: isOrganizer ? 'organizer' : 'user',
 			stripeConnectId: undefined,
 		});
 	},

@@ -6,11 +6,7 @@ export default defineSchema({
 		userId: v.string(),
 		email: v.string(),
 		name: v.string(),
-		role: v.union(
-			v.literal('admin'),
-			v.literal('organizer'),
-			v.literal('user')
-		),
+		role: v.union(v.literal('organizer'), v.literal('user')),
 		stripeConnectId: v.optional(v.string()),
 	})
 		.index('by_userId', ['userId'])

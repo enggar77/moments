@@ -25,9 +25,3 @@ export const ORGANIZER_EMAILS = [
 	'411221090@mahasiswa.undira.ac.id',
 	'ronaldajha007@gmail.com',
 ];
-export const ADMIN_EMAILS = [
-	'jihandokoenggar@gmail.com',
-	'ronaldo.s.n666@gmail.com',
-	'akhmadramedhon31jl@gmail.com',
-	'artemiawitch@gmail.com',
-];

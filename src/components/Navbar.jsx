@@ -101,14 +101,6 @@ export default function Navbar() {
 						</Button>
 					</Link>
 				)}
-				{/* Admin */}
-				{userRole.role === 'admin' && (
-					<Link to={`/dashboard`}>
-						<Button className={'btn-sm btn-primary'}>
-							Dashboard
-						</Button>
-					</Link>
-				)}
 			</div>
 
 			<div className="w-[2px] bg-base-content/30 h-5" />
