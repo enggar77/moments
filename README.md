@@ -1,6 +1,6 @@
 # MOMENTS - Modern event ticketing platform with real-time queuing and instant payments
 
-Live website : moments-mxkp.onrender.com/
+Live website : https://moments-mxkp.onrender.com/
 
 <img src="./public/home.png" alt="Home Page" width="768" height="auto">
 
